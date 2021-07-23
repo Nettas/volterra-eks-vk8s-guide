@@ -104,7 +104,7 @@ Open the console and run the following command: **kubectl apply –f volterra-k8
 4. Accept registration
 *******************
 
-The Site we just configured will show up as a new registration request in the VoltConsole. We now need to approve the registration requests for the site by saving the **Registration Acceptance form**.
+The Site we just configured will show up as a new registration request in the VoltConsole. We now need to approve the registration request for the site by saving the **Registration Acceptance form**.
 
 `a)` Go back to the VoltConsole, the **System** namespace. Navigate to the ** Site Management** menu option to accept pending registrations. select **Registrations** from the options pane. You will your site in the displayed list of sites. 
 
