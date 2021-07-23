@@ -66,35 +66,66 @@ terraform apply
 Connect EKS Cluster
 ##################### 
 
+In order to connect EKS cluster, we'll follow a few steps. First, we'll need to generate a site token, which is used among a few other things to deploy and configure a K8s cluster as a Volterra Site. Then we'll update the manifest with the generated token, and, finally, we'll deploy it.
+
 1. Create token
+***************
+
+`a)` Log in the VoltConsole and go to the **System** namespace.  Then navigate to **Site Management** in the configuration menu, and select **Site Tokens** from the options pane.
 
 .. figure:: _figures/connect_eks_cluster_1.png
 
+`b)` Click **Add site token** to open the form and create a new token.
+
 .. figure:: _figures/connect_eks_cluster_2.png
+
+`c)` Then enter the site name. Description field is optional. Click **Add site token** button at the bottom of the form. 
 
 .. figure:: _figures/connect_eks_cluster_3.png
 
+`d)` Copy the token UID to use it for the manifest file in the next step.
+
 .. figure:: _figures/connect_eks_cluster_4.png
 
-2. update manifest
+2. Update manifest
+*******************
+
+Download the sample  ` Manifest Template <https://gitlab.com/volterra.io/volterra-ce/-/blob/master/k8s/ce_k8s.yml >`_  and open it. Add the token generated in the previous step and save the file. The edited manifest will later be applied to spawn a Volterra Site as a pod on the EKS cluster.
 
 .. figure:: _figures/connect_eks_cluster_5.png
 
-3. deploy manifest
+3. Deploy manifest
+*******************
+
+Open the console and run the following command: **kubectl apply –f eks-manifest.yaml **. This deploys the site using the Kubeconfig file of your K8s cluster and the created manifest file.
 
 .. figure:: _figures/connect_eks_cluster_6.png
 
-4. accept registration
+4. Accept registration
+*******************
+
+The Site we just configured will show up as a new registration request in the VoltConsole. We now need to approve the registration requests for the site by saving the **Registration Acceptance form**.
+
+`a)` Go back to the VoltConsole, the **System** namespace. Navigate to the ** Site Management** menu option to accept pending registrations. select **Registrations** from the options pane. You will your site in the displayed list of sites. 
 
 .. figure:: _figures/connect_eks_cluster_7.png
 
+`b)` Click the tick to load the Registration Acceptance form.
+
 .. figure:: _figures/connect_eks_cluster_8.png
+
+`c)` Click the **Sabe and Exit** button to save the registration.
 
 .. figure:: _figures/connect_eks_cluster_9.png
 
-5. check status
+5. Check status
+*******************
+
+We have now configured our Site, so let's see its status, including health score. Go to the **Site List** tab and you’ll see the dashboard for your site.
 
 .. figure:: _figures/connect_eks_cluster_10.png
+
+**Note**: It may take a few minutes for the health and connectivity status to get updated in the portal.
 
 Create VK8S Cluster
 ##################### 
