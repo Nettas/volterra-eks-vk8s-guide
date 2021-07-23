@@ -90,7 +90,7 @@ In order to connect EKS cluster, we'll follow a few steps. First, we'll need to 
 2. Update manifest
 *******************
 
-Download the sample  ` Manifest Template <https://gitlab.com/volterra.io/volterra-ce/-/blob/master/k8s/ce_k8s.yml >`_  and open it. Add the token generated in the previous step and save the file. The edited manifest will later be applied to spawn a Volterra Site as a pod on the EKS cluster.
+Download the sample  `Manifest Template <https://gitlab.com/volterra.io/volterra-ce/-/blob/master/k8s/ce_k8s.yml >`_  and open it. Add the token generated in the previous step and save the file. The edited manifest will later be applied to spawn a Volterra Site as a pod on the EKS cluster.
 
 .. figure:: _figures/connect_eks_cluster_5.png
 
