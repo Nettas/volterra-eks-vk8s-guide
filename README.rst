@@ -22,15 +22,31 @@ Lab Environment Setup
 *************************** 
 Open IAM => Users
 
-Create new user
+.. figure:: _figures/aws_cli_config_1.png
 
-Get token and secret
+.. figure:: _figures/aws_cli_config_1_2.png
 
--- aws configure
+.. figure:: _figures/aws_cli_config_1_3.png
 
-Create IAM policy
+.. figure:: _figures/aws_cli_config_1_4.png
 
--- link to minimal IAM policy
+.. figure:: _figures/aws_cli_config_1_5.png
+
+.. figure:: _figures/aws_cli_config_2.png
+
+.. figure:: _figures/aws_cli_config_3.png
+
+.. figure:: _figures/aws_cli_config_4.png
+
+.. figure:: _figures/aws_cli_config_5.png
+
+.. figure:: _figures/aws_cli_config_6.png
+
+.. figure:: _figures/aws_cli_config_7.png
+
+.. figure:: _figures/aws_cli_config_8.png
+
+.. figure:: _figures/aws_cli_config_9.png
 
 deploy kubectl to AWS
 
