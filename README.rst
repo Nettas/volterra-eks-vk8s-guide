@@ -97,7 +97,7 @@ Download the sample  `Manifest Template <https://gitlab.com/volterra.io/volterra
 3. Deploy manifest
 *******************
 
-Open the console and run the following command: **kubectl apply –f eks-manifest.yaml**. This deploys the site using the Kubeconfig file of your K8s cluster and the created manifest file.
+Open the console and run the following command: **kubectl apply –f volterra-k8s-manifest.yaml**. This deploys the site using the Kubeconfig file of your K8s cluster and the created manifest file.
 
 .. figure:: _figures/connect_eks_cluster_6.png
 
