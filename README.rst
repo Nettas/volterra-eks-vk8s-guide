@@ -104,24 +104,24 @@ Open the console and run the following command: **kubectl apply –f volterra-k8
 4. Accept registration
 *******************
 
-The Site we just configured will show up as a new registration request in the VoltConsole. We now need to approve the registration request for the site by saving the **Registration Acceptance form**.
+The Site we just configured will show up as a new registration request in the VoltConsole. We now need to approve the registration request for the site.
 
-`a)` Go back to the VoltConsole, the **System** namespace. Navigate to the ** Site Management** menu option to accept pending registrations. select **Registrations** from the options pane. You will your site in the displayed list of sites. 
+`a)` Go back to the VoltConsole, the **System** namespace. Navigate to the **Site Management** menu option to accept the pending registration. Select **Registrations** from the options pane. You will see your site in the displayed list. 
 
 .. figure:: _figures/connect_eks_cluster_7.png
 
-`b)` Click the tick to load the Registration Acceptance form.
+`b)` Click the tick to load the **Registration Acceptance** form.
 
 .. figure:: _figures/connect_eks_cluster_8.png
 
-`c)` Click the **Sabe and Exit** button to save the registration.
+`c)` Click the **Save and Exit** button to save the registration.
 
 .. figure:: _figures/connect_eks_cluster_9.png
 
 5. Check status
 *******************
 
-We have now configured our Site, so let's see its status, including health score. Go to the **Site List** tab and you’ll see the dashboard for your site.
+We have now configured our Site, so let's see its status, including health score. Go to the **Site List** tab and you’ll see the dashboard of your site.
 
 .. figure:: _figures/connect_eks_cluster_10.png
 
