@@ -193,31 +193,56 @@ Open CLI, and run the following command **kubectl --kubeconfig ./ves_default_vk8
 Deploy resources to Volterra Edge
 ##################### 
 
-1. deploy resources
+After vK8s cluster has been created and tested, we can deploy our app's resources to Volterra Edge. We are going to locate frond end in Volterra Edge. Then we'll create internal and public load balancers, connecting Volterra with k8s cluster (with app's backend), and Volterra with the internet, respectively. 
+
+1. Deploy resources
+**********************
 
 -- TBD
 
 2. Create internal load balancer
+********************************
+
+First of all, let's 
+
+`a)`
 
 .. figure:: _figures/backend_lb_1.png
 
+`b)`
+
 .. figure:: _figures/backend_lb_2.png
+
+`c)`
 
 .. figure:: _figures/backend_lb_3.png
 
+`d)`
+
 .. figure:: _figures/backend_lb_4.png
+
+`e)`
 
 .. figure:: _figures/backend_lb_5.png
 
+`f)`
+
 .. figure:: _figures/backend_lb_6.png
+
+`g)`
 
 .. figure:: _figures/backend_lb_7.png
 
+`h)`
+
 .. figure:: _figures/backend_lb_8.png
+
+`i)`
 
 .. figure:: _figures/backend_lb_9.png
 
 3. create public load balancer
+**********************
 
 .. figure:: _figures/frontend_lb_1.png
 
@@ -236,5 +261,6 @@ Deploy resources to Volterra Edge
 .. figure:: _figures/frontend_lb_8.png
 
 4. check connection from web
+**********************
 
 .. figure:: _figures/frontend_lb_9.png
