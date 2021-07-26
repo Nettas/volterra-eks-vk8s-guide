@@ -106,7 +106,7 @@ Open the console and run the following command: **kubectl apply –f volterra-k8
 
 The Site we just configured will show up as a new registration request in the VoltConsole. We now need to approve the registration request for the site.
 
-`a)` Go back to the VoltConsole, the **System** namespace. Navigate to the **Site Management** menu option to accept the pending registration. Select **Registrations** from the options pane. You will see your site in the displayed list. 
+`a)` Go back to the VoltConsole, the **System** tab. Navigate to the **Site Management** menu option to accept the pending registration. Select **Registrations** from the options pane. You will see your site in the displayed list. 
 
 .. figure:: _figures/connect_eks_cluster_7.png
 
@@ -130,17 +130,29 @@ We have now configured our Site, so let's see its status, including health score
 Create VK8S Cluster
 ##################### 
 
+Volterra provides mechanism to easily deploy applications using vK8s across Volterra global network and make them available closer to users. Virtual Kubernetes (vK8s) clusters are fully-functional Kubernetes deployments that can span multiple geographic regions, clouds, and even on-prem environments. So, let's follow a few steps below to create a vK8s object in VoltConsole, associate with a virtual site that groups Volterra sites, download kubeconfig of the created vK8s and test connectivity.
+
 1. Create cluster
+*******************
+
+`a)` Select **Applications** tab and then navigate to **Virtual K8s** from the configuration menu. Click **Add virtual K8s** to create a vK8s object.
 
 .. figure:: _figures/create_vk8s_1.png
 
+`b)` Let's now give the vK8s a name and then move on to **Select Vsite Ref**: the virtual-site reference of locations on the Volterra network where vK8s will be instantiated. We will use the default virtual-site for our vK8s.
+
 .. figure:: _figures/create_vk8s_2.png
+
+`c)` Check the box just next to **ves-io-all-res** to associates the virtual site that selects all Volterra network cloud sites.
 
 .. figure:: _figures/create_vk8s_3.png
 
+`d)` Continue to apply the virtual site to the vK8s configuration. Click **Save and Exit** to complete creating the vK8s clusters in all Volterra Regional Edge (RE) sites.
+
 .. figure:: _figures/create_vk8s_4.png
 
-2. download kubeconfig
+2. Download kubeconfig
+**********************
 
 .. figure:: _figures/create_vk8s_5.png
 
