@@ -236,7 +236,7 @@ Select **Outside Network** on the site and enter the port **3306** where endpoin
 
 .. figure:: _figures/tcplb_mysql_7.png
 
-`h)` Select **Virtual Site** to advertise load balancer on a virtual site with the given network. Then select **vK8s Service Network** as network type to be used on site and move on the selecting reference to virtual site object - **shared/ves-io-all-res** covering all regional edge sites across Volterra ADN.  
+`h)` Select **Virtual Site** to advertise load balancer on a virtual site with the given network. Then select **vK8s Service Network** as network type to be used on site and move on to selecting reference to virtual site object - **shared/ves-io-all-res** covering all regional edge sites across Volterra ADN.  
 
 **Apply** custom advertise VIP configuration.
 
