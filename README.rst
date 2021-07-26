@@ -220,15 +220,19 @@ Let's create a new Origin Pool, which will be used in our load balancer by click
 
 .. figure:: _figures/tcplb_mysql_4.png
 
-`e)`
+`e)` Enter a unique name for the origin pool, and then select **K8s Service Name of Origin Server on given Sites** as the type of origin server. Note that we will need to indicate the Origin Server **service name**, which follows the format of **servicename.namespace**. 
+
+After that select site reference to site object **eks-cluster**. This specifies where the origin server is located. 
+
+Select **Outside Network** on the site and enter the port **3306** where endpoint service will be available. Click **Continue** to move on.
 
 .. figure:: _figures/tcplb_mysql_5.png
 
-`f)`
+`f)` Click **Apply** to apply the configuration of origin pool to the load balancer. This will return to the load balancer configuration form.
 
 .. figure:: _figures/tcplb_mysql_6.png
 
-`g)`
+`g)` Let's configure the method to advertise VIP. Select **Advertise Custom** on specific sites which will advertise the VIP on specific sites, not on public network with default VIP. Then click **Configure**. 
 
 .. figure:: _figures/tcplb_mysql_7.png
 
