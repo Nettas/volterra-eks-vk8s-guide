@@ -186,9 +186,7 @@ We will now need a kubeconfig file for our cluster. Kubeconfig stores informatio
 3. Check connection
 **********************
 
-TBD
-
-kubectl --kubeconfig ./ves_default_vk8s.yaml cluster-info
+Open CLI, and run the following command **kubectl --kubeconfig ./ves_default_vk8s.yaml cluster-info** to test if the created vK8s cluster is connected.  
 
 .. figure:: _figures/create_vk8s_10.png
 
