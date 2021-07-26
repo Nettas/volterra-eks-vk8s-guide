@@ -181,14 +181,14 @@ We will now need a kubeconfig file for our cluster. Kubeconfig stores informatio
 3. Check connection
 **********************
 
-Open CLI, and run the following command **kubectl --kubeconfig ./ves_default_vk8s.yaml cluster-info** to test if the created vK8s cluster is connected. If it's successfully cdone, the output will show that it's running at Volterra.  
+Open CLI, and run the following command **kubectl --kubeconfig ./ves_default_vk8s.yaml cluster-info** to test if the created vK8s cluster is connected. If it's successfully accomplished, the output will show that it's running at Volterra.  
 
 .. figure:: _figures/create_vk8s_10.png
 
 Deploy resources to Volterra Edge
 ##################### 
 
-After vK8s cluster has been created and tested, we can deploy our app's resources to Volterra Edge. We are going to locate frond end in Volterra Edge. Then we'll create internal and public load balancers, connecting Volterra with k8s cluster (with app's backend), and Volterra with the internet, respectively. 
+After vK8s cluster has been created and tested, we can deploy our app's resources to Volterra Edge. We are going to locate frond end in Volterra Edge. Then we'll create internal TCP and public HTTP load balancers, connecting Volterra with k8s cluster (with app's backend), and Volterra with the internet, respectively. Then we will test if the resources are successfully deployed to Volterra Edge. 
 
 1. Deploy resources
 **********************
@@ -198,13 +198,13 @@ After vK8s cluster has been created and tested, we can deploy our app's resource
 2. Create internal load balancer
 ********************************
 
-First of all, let's 
+First of all, let's create an internal TCP load balancer, then add and configure an origin pool. Origin pools consist of endpoints and clusters, as well as routes and advertise policies that are required to make the application available to the internet. 
 
-`a)`
+`a)` In the **Application** tab, navigate to **Load Balancers** and then select **TCP Load Balancers** in the options. Then click **Add TCP Load Balancer** to open the load balancer creation form.
 
 .. figure:: _figures/tcplb_mysql_1.png
 
-`b)`
+`b)`Enter a name for the TCP load balancer in the Metadata section, and domain that will be matched to this balancer. A domain can be delegated to Volterra, so that Domain Name Service (DNS) entries can be created quickly in order to deploy and route traffic to our workload within seconds. Then fill in listen port **3306** for the TCP proxy, and move on to creating origin pool that will be used for this load balancer by clicling **Configure** origin pools.
 
 .. figure:: _figures/tcplb_mysql_2.png
 
