@@ -174,14 +174,14 @@ We will now need a kubeconfig file for our cluster. Kubeconfig stores informatio
 
 .. figure:: _figures/create_vk8s_8.png
 
-`e)` TBD
+`e)` Copy the downloaded Kubeconfig into the **k8s deployments** folder.
 
 .. figure:: _figures/create_vk8s_9.png
 
 3. Check connection
 **********************
 
-Open CLI, and run the following command **kubectl --kubeconfig ./ves_default_vk8s.yaml cluster-info** to test if the created vK8s cluster is connected. The output will show that it's running at Volterra.  
+Open CLI, and run the following command **kubectl --kubeconfig ./ves_default_vk8s.yaml cluster-info** to test if the created vK8s cluster is connected. If it's successfully cdone, the output will show that it's running at Volterra.  
 
 .. figure:: _figures/create_vk8s_10.png
 
