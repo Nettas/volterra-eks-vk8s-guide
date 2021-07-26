@@ -204,15 +204,19 @@ First of all, let's create an internal TCP load balancer, then add and configure
 
 .. figure:: _figures/tcplb_mysql_1.png
 
-`b)`Enter a name for the TCP load balancer in the Metadata section, and domain that will be matched to this balancer. A domain can be delegated to Volterra, so that Domain Name Service (DNS) entries can be created quickly in order to deploy and route traffic to our workload within seconds. Then fill in listen port **3306** for the TCP proxy, and move on to creating origin pool that will be used for this load balancer by clicling **Configure** origin pools.
+`b)` Enter a name for the TCP load balancer in the Metadata section, and domain that will be matched to this balancer. A domain can be delegated to Volterra, so that Domain Name Service (DNS) entries can be created quickly in order to deploy and route traffic to our workload within seconds. 
+
+Then fill in listen port **3306** for the TCP proxy, and move on to creating origin pool that will be used for this load balancer by clicking **Configure** origin pools.
 
 .. figure:: _figures/tcplb_mysql_2.png
 
-`c)`
+`c)` The origin pools are a mechanism to configure a set of endpoints grouped together into a resource pool that is used in the load balancer configuration. 
+
+Let's create a new Origin Pool, which will be used in our load balancer by clicking **Add item** .
 
 .. figure:: _figures/tcplb_mysql_3.png
 
-`d)`
+`d)` Click **Create new origin pool** to open the origin pool creation form. 
 
 .. figure:: _figures/tcplb_mysql_4.png
 
