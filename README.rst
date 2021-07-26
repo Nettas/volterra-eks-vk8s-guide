@@ -207,39 +207,39 @@ First of all, let's
 
 `a)`
 
-.. figure:: _figures/backend_lb_1.png
+.. figure:: _figures/tcplb_mysql_1.png
 
 `b)`
 
-.. figure:: _figures/backend_lb_2.png
+.. figure:: _figures/tcplb_mysql_2.png
 
 `c)`
 
-.. figure:: _figures/backend_lb_3.png
+.. figure:: _figures/tcplb_mysql_3.png
 
 `d)`
 
-.. figure:: _figures/backend_lb_4.png
+.. figure:: _figures/tcplb_mysql_4.png
 
 `e)`
 
-.. figure:: _figures/backend_lb_5.png
+.. figure:: _figures/tcplb_mysql_5.png
 
 `f)`
 
-.. figure:: _figures/backend_lb_6.png
+.. figure:: _figures/tcplb_mysql_6.png
 
 `g)`
 
-.. figure:: _figures/backend_lb_7.png
+.. figure:: _figures/tcplb_mysql_7.png
 
 `h)`
 
-.. figure:: _figures/backend_lb_8.png
+.. figure:: _figures/tcplb_mysql_8.png
 
 `i)`
 
-.. figure:: _figures/backend_lb_9.png
+.. figure:: _figures/tcplb_mysql_9.png
 
 3. create public load balancer
 **********************
