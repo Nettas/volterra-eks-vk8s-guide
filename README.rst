@@ -130,7 +130,7 @@ We have now configured our Site, so let's see its status, including health score
 Create VK8S Cluster
 ##################### 
 
-Volterra provides mechanism to easily deploy applications using vK8s across Volterra global network and make them available closer to users. Virtual Kubernetes (vK8s) clusters are fully-functional Kubernetes deployments that can span multiple geographic regions, clouds, and even on-prem environments. So, let's follow a few steps below to create a vK8s object in VoltConsole, associate with a virtual site that groups Volterra sites, download kubeconfig of the created vK8s and test connectivity.
+Volterra provides mechanism to easily deploy applications using vK8s across Volterra global network and make them available closer to users. Virtual Kubernetes (vK8s) clusters are fully-functional Kubernetes deployments that can span multiple geographic regions, clouds, and even on-prem environments. Let's now follow a few steps below to create a vK8s object in VoltConsole, associate with a virtual site that groups Volterra sites, download kubeconfig of the created vK8s and test connectivity.
 
 1. Create cluster
 *******************
@@ -143,7 +143,7 @@ Volterra provides mechanism to easily deploy applications using vK8s across Volt
 
 .. figure:: _figures/create_vk8s_2.png
 
-`c)` Check the box just next to **ves-io-all-res** to associates the virtual site that selects all Volterra network cloud sites.
+`c)` Check the box just next to **ves-io-all-res** to associates the virtual site that selects all Volterra network cloud sites, and click **Select Vsite Ref**.
 
 .. figure:: _figures/create_vk8s_3.png
 
@@ -151,20 +151,37 @@ Volterra provides mechanism to easily deploy applications using vK8s across Volt
 
 .. figure:: _figures/create_vk8s_4.png
 
-2. Download kubeconfig
+The process of creating a vK8s cluster takes just a minute, and after that you will be all set to deploy and distribute app workloads onto this new infrastructure.
+
+2. Download Kubeconfig
 **********************
+
+We will now need a kubeconfig file for our cluster. Kubeconfig stores information about clusters, users, namespaces, and authentication mechanisms. We will download the Kubeconfig entering the certificate expiry date when prompted. 
+
+`a)` Open the dropdown menu by clicking three dots and start downloading Kubeconfig. 
 
 .. figure:: _figures/create_vk8s_5.png
 
+`b)` Open the calendar and select the expiry date. 
+
 .. figure:: _figures/create_vk8s_6.png
+
+`c)` Click **Download credential** to start the download.
 
 .. figure:: _figures/create_vk8s_7.png
 
+`d)` As you can see, Kubeconfig is downloaded. 
+
 .. figure:: _figures/create_vk8s_8.png
+
+`e)` TBD
 
 .. figure:: _figures/create_vk8s_9.png
 
-3. check connection
+3. Check connection
+**********************
+
+TBD
 
 kubectl --kubeconfig ./ves_default_vk8s.yaml cluster-info
 
