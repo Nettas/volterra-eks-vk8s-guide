@@ -3,22 +3,17 @@ volterra-eks-vk8s-lab
 
 .. contents:: Table of Contents
 
-update kubeconfig for kubectl
-aws eks update-kubeconfig --region eu-west-2 --name education-eks-DPP2hvMh
-
-
 Pre-Requisites
 ###############
 
-kubectl
-AWS Account
-aws cli
-terraform
+- AWS Account
+- aws cli
+- terraform
+- kubectl
+- volterra account
 
 
-
-volterra account
-
+.. figure:: _figures/overview.png
 
 Lab Environment Setup  
 ############################### 
