@@ -121,7 +121,7 @@ The Site we just configured will show up as a new registration request in the Vo
 5. Check status
 *******************
 
-We have now configured our Site, so let's see its status, including health score. Go to the **Site List** tab and you’ll see the dashboard of your site.
+We have now configured our Site, so let's see its status, including health score. Go to the **Site List** tab and you’ll see the dashboard of your site. In the screenshot below, we can see that the site is up and running, with 100% health score. 
 
 .. figure:: _figures/connect_eks_cluster_10.png
 
