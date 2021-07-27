@@ -198,7 +198,7 @@ After vK8s cluster has been created and tested, we can deploy our app's resource
 2. Create internal load balancer
 ********************************
 
-First of all, let's create an internal TCP load balancer, then add and configure an origin pool. Origin pools consist of endpoints and clusters, as well as routes and advertise policies that are required to make the application available to the internet. 
+First of all, let's create an internal TCP load balancer to connect Volterra with k8s cluster (with app's backend), then add and configure an origin pool. Origin pools consist of endpoints and clusters, as well as routes and advertise policies that are required to make the application available to the internet. 
 
 `a)` In the **Application** tab, navigate to **Load Balancers** and then select **TCP Load Balancers** in the options. Then click **Add TCP Load Balancer** to open the load balancer creation form.
 
@@ -246,28 +246,46 @@ Select **Outside Network** on the site and enter the port **3306** where endpoin
 
 .. figure:: _figures/tcplb_mysql_9.png
 
-Great! Our internal TCP load balancer is now configured and created. Let's move on to creating public load balancer. 
+Great! The internal TCP load balancer is now configured and created. Let's move on to creating public load balancer. 
 
-3. create public load balancer
-**********************
+3. Create public load balancer
+******************************
+
+to connect Volterra with the internet
+
+`a)` 
 
 .. figure:: _figures/frontend_lb_1.png
 
+`b)` 
+
 .. figure:: _figures/frontend_lb_2.png
+
+`c)` 
 
 .. figure:: _figures/frontend_lb_3.png
 
+`d)` 
+
 .. figure:: _figures/frontend_lb_4.png
+
+`e)` 
 
 .. figure:: _figures/frontend_lb_5.png
 
+`f)` 
+
 .. figure:: _figures/frontend_lb_6.png
+
+`g)` 
 
 .. figure:: _figures/frontend_lb_7.png
 
+`h)` 
+
 .. figure:: _figures/frontend_lb_8.png
 
-4. check connection from web
-**********************
+4. Check connection from web
+****************************
 
 .. figure:: _figures/frontend_lb_9.png
