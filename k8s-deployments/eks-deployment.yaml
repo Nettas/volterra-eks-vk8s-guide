@@ -1,0 +1,185 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: buytime-nearest-store-backend
+spec:
+  selector:
+    matchLabels:
+      app: buytime-nearest-store-backend
+  template:
+    metadata:
+      labels:
+        app: buytime-nearest-store-backend
+    spec:
+      containers:
+        - name: server
+          image: public.ecr.aws/r2r2l6v3/buytime-nearest-store-backend:v1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9339
+          env:
+            - name: MYSQL_HOST
+              value: "buytime-database"
+            - name: MYSQL_DB
+              value: "store_location"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: buytime-nearest-store-backend
+spec:
+  type: ClusterIP
+  selector:
+    app: buytime-nearest-store-backend
+  ports:
+    - name: http
+      port: 80
+      targetPort: 9339
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: buytime-rerverse-proxy
+spec:
+  selector:
+    matchLabels:
+      app: buytime-rerverse-proxy
+  template:
+    metadata:
+      labels:
+        app: buytime-rerverse-proxy
+    spec:
+      containers:
+        - name: server
+          image: public.ecr.aws/r2r2l6v3/buytime-rp:v1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: buytime-rerverse-proxy
+spec:
+  type: ClusterIP
+  selector:
+    app: buytime-rerverse-proxy
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: buytime-database
+spec:
+  selector:
+    matchLabels:
+      app: buytime-database
+  template:
+    metadata:
+      labels:
+        app: buytime-database
+    spec:
+      containers:
+        - name: server
+          image: public.ecr.aws/r2r2l6v3/buytime-db:v1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3306
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: buytime-database
+spec:
+  type: ClusterIP
+  selector:
+    app: buytime-database
+  ports:
+    - name: mysql
+      port: 3306
+      targetPort: 3306
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: server
+          image: public.ecr.aws/r2r2l6v3/buytime-backend:v1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9192
+          env:
+            - name: MYSQL_HOST
+              value: "buytime-database"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+spec:
+  type: ClusterIP
+  selector:
+    app: backend
+  ports:
+    - name: http
+      port: 80
+      targetPort: 9192
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: server
+          image: public.ecr.aws/r2r2l6v3/buytime-fronted:v1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+spec:
+  type: ClusterIP
+  selector:
+    app: frontend
+  ports:
+    - name: http
+      port: 80
+      targetPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: buytime-external
+spec:
+  type: LoadBalancer
+  selector:
+    app: buytime-rerverse-proxy
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80            

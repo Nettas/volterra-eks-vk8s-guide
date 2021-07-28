@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: buytime-nearest-store-backend
+spec:
+  selector:
+    matchLabels:
+      app: buytime-nearest-store-backend
+  template:
+    metadata:
+      labels:
+        app: buytime-nearest-store-backend
+    spec:
+      containers:
+        - name: server
+          image: public.ecr.aws/r2r2l6v3/buytime-nearest-store-backend:v1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9339
+          env:
+            - name: MYSQL_HOST
+              value: "buytime-database.internal"
+            - name: MYSQL_DB
+              value: "store_location"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: buytime-nearest-store-backend
+spec:
+  type: ClusterIP
+  selector:
+    app: buytime-nearest-store-backend
+  ports:
+    - name: http
+      port: 80
+      targetPort: 9339
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: server
+          image: public.ecr.aws/r2r2l6v3/buytime-fronted:v1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+spec:
+  type: ClusterIP
+  selector:
+    app: frontend
+  ports:
+    - name: http
+      port: 80
+      targetPort: 3000

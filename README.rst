@@ -63,6 +63,8 @@ terraform apply
 
 .. figure:: _figures/eks_setup_4.png
 
+.. figure:: _figures/eks_setup_5.png
+
 Connect EKS Cluster
 ##################### 
 
@@ -193,7 +195,7 @@ After vK8s cluster has been created and tested, we can deploy our app's resource
 1. Deploy resources
 **********************
 
--- TBD
+.. figure:: _figures/create_vk8s_11.png
 
 2. Create internal load balancer
 ********************************
@@ -255,37 +257,51 @@ to connect Volterra with the internet
 
 `a)` 
 
-.. figure:: _figures/frontend_lb_1.png
+.. figure:: _figures/httplb_1.png
 
-`b)` 
+.. figure:: _figures/httplb_2.png
 
-.. figure:: _figures/frontend_lb_2.png
+.. figure:: _figures/httplb_2_1.png
 
-`c)` 
+.. figure:: _figures/httplb_3.png
 
-.. figure:: _figures/frontend_lb_3.png
+.. figure:: _figures/httplb_4.png
 
-`d)` 
+.. figure:: _figures/httplb_5.png
 
-.. figure:: _figures/frontend_lb_4.png
+.. figure:: _figures/httplb_6.png
 
-`e)` 
+.. figure:: _figures/httplb_7.png
 
-.. figure:: _figures/frontend_lb_5.png
+.. figure:: _figures/httplb_8.png
 
-`f)` 
+.. figure:: _figures/httplb_9.png
 
-.. figure:: _figures/frontend_lb_6.png
+.. figure:: _figures/httplb_10.png
 
-`g)` 
+.. figure:: _figures/httplb_11.png
 
-.. figure:: _figures/frontend_lb_7.png
+.. figure:: _figures/httplb_12.png
 
-`h)` 
+.. figure:: _figures/httplb_13.png
 
-.. figure:: _figures/frontend_lb_8.png
+.. figure:: _figures/httplb_14.png
+
+.. figure:: _figures/httplb_15.png
+
+.. figure:: _figures/httplb_16.png
+
+.. figure:: _figures/httplb_17.png
+
+.. figure:: _figures/httplb_18.png
+
+.. figure:: _figures/httplb_19.png
+
+.. figure:: _figures/httplb_20.png
+
+.. figure:: _figures/httplb_21.png
 
 4. Check connection from web
 ****************************
 
-.. figure:: _figures/frontend_lb_9.png
+.. figure:: _figures/httplb_22.png
