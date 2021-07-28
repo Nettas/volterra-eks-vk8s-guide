@@ -92,14 +92,14 @@ In order to connect EKS cluster, we'll follow a few steps. First, we'll need to 
 2. Update manifest
 *******************
 
-Download the sample  `Manifest Template <https://gitlab.com/volterra.io/volterra-ce/-/blob/master/k8s/ce_k8s.yml>`_  and open it. Paste the token generated in the previous step and save the file. The edited manifest will later be applied to spawn a Volterra Site as a pod on the EKS cluster.
+Open the kubernetes deployment file located at **./k8s-deployments/volterra-k8s-manifest.yaml**. Paste the token generated in the previous step and save the file. The edited manifest will later be applied to spawn a Volterra Mesh on the EKS cluster. The original manifest template file can be found here:  `Manifest Template <https://gitlab.com/volterra.io/volterra-ce/-/blob/master/k8s/ce_k8s.yml>`_ 
 
 .. figure:: _figures/connect_eks_cluster_5.png
 
 3. Deploy manifest
 *******************
 
-Open the console and run the following command: **kubectl apply –f volterra-k8s-manifest.yaml**. This deploys the site using the created manifest file.
+Go to the **./k8s-deployments** directory, open the console and run the following command: **kubectl apply –f volterra-k8s-manifest.yaml**. This deploys the site using the created manifest file.
 
 .. figure:: _figures/connect_eks_cluster_6.png
 
