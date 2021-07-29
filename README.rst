@@ -176,7 +176,7 @@ We will now need a kubeconfig file for our cluster. Kubeconfig stores informatio
 
 .. figure:: _figures/create_vk8s_8.png
 
-`e)` Copy the downloaded Kubeconfig into the **k8s deployments** folder.
+`e)` Copy the downloaded Kubeconfig into the **k8s-deployments** folder.
 
 .. figure:: _figures/create_vk8s_9.png
 
@@ -190,14 +190,14 @@ Open CLI, and run the following command **kubectl --kubeconfig ./ves_default_vk8
 Deploy resources to Volterra Edge
 ##################### 
 
-After vK8s cluster has been created and tested, we can deploy our app's resources to Volterra Edge. We are going to locate frond end in Volterra Edge. 
+After vK8s cluster has been created and tested, we can deploy our app's resources to Volterra Edge. We are going to locate frontend and nearest-store-backend in Volterra Edge. 
 
-We'll create internal TCP and public HTTP load balancers, connecting Volterra with k8s cluster (with app's backend), and Volterra with the internet, respectively. Then we will test if the resources are successfully deployed to Volterra Edge and available. 
+We'll create internal TCP and public HTTP load balancers, connecting Volterra with EKS cluster (with app's backend), and Volterra with the internet, respectively. Then we will test if the resources are successfully deployed to Volterra Edge and available. 
 
 1. Deploy resources
 **********************
 
-Using Kubeconfig, we will now deploy our app to Volterra Edge moving there its front end part. Open CLI and run the following command: ****. The output will show the services created. 
+Using Kubeconfig, we will now deploy our app to Volterra Edge moving there its frontend and nearest-store-backend. Open CLI and run the following command: **kubectl --kubeconfig ./ves_default_vk8s.yaml apply -f vk8s-deployment.yaml**. The output will show the services created. 
 
 .. figure:: _figures/create_vk8s_11.png
 
@@ -226,7 +226,7 @@ Let's create a new Origin Pool, which will be used in our load balancer by click
 
 .. figure:: _figures/tcplb_mysql_4.png
 
-`e)` Enter a unique name for the origin pool, and then select **K8s Service Name of Origin Server on given Sites** as the type of origin server. Note that we will need to indicate the Origin Server **service name**, which follows the format of **servicename.namespace**. 
+`e)` Enter a unique name for the origin pool, and then select **K8s Service Name of Origin Server on given Sites** as the type of origin server. Note that we will need to indicate the Origin Server **service name**, which follows the format of **servicename.namespace**. For this flow, let's specify **buytime-database.default**. 
 
 After that select site reference to site object **eks-cluster**. This specifies where the origin server is located. 
 
@@ -252,56 +252,99 @@ Select **Outside Network** on the site and enter the port **3306** where endpoin
 
 .. figure:: _figures/tcplb_mysql_9.png
 
-Great! The internal TCP load balancer is now configured and created, and Volterra is connected with our k8s cluster with app's backend. Let's move on to creating public load balancer. 
+Great! The internal TCP load balancer is now configured and created, and Volterra is connected with our EKS cluster with app's backend. Let's move on to creating public load balancer. 
 
 3. Create public load balancer
 ******************************
 
-to connect Volterra with the internet
+We will use Volterra HTTP Load Balancer as a Reverse Proxy and to route traffic to resources located on Volterra vk8s and EKS based on the URI prefix. Let's follow the steps below to create an origin pool and load balancer for our app.
 
-`a)` 
+
+`a)` In the **Application** tab, navigate to **Load Balancers** and then select **HTTP Load Balancers** in the options. Then click **Add HTTP Load Balancer** to open the load balancer creation form.
 
 .. figure:: _figures/httplb_1.png
 
+`b)` First, enter the load balancer name. Then provide a domain name for our workload: a domain can be delegated to Volterra, so that Domain Name Service (DNS) entries can be created quickly in order to deploy and route traffic to our workload within seconds. Let’s use **buytime.demo.f5lab** for this flow. Finally, move on to creating an origin pool that will be used for this load balancer by clicking **Configure**.
+
 .. figure:: _figures/httplb_2.png
+
+`c)`
 
 .. figure:: _figures/httplb_2_1.png
 
+`d)`
+
 .. figure:: _figures/httplb_3.png
+
+`e)`
 
 .. figure:: _figures/httplb_4.png
 
+`f)`
+
 .. figure:: _figures/httplb_5.png
+
+`g)`
 
 .. figure:: _figures/httplb_6.png
 
+`h)`
+
 .. figure:: _figures/httplb_7.png
+
+`i)`
 
 .. figure:: _figures/httplb_8.png
 
+`j)`
+
 .. figure:: _figures/httplb_9.png
+
+`k)`
 
 .. figure:: _figures/httplb_10.png
 
+`l)`
+
 .. figure:: _figures/httplb_11.png
+
+`m)`
 
 .. figure:: _figures/httplb_12.png
 
+`n)`
+
 .. figure:: _figures/httplb_13.png
+
+`o)`
 
 .. figure:: _figures/httplb_14.png
 
+`p)`
+
 .. figure:: _figures/httplb_15.png
+
+`q)`
 
 .. figure:: _figures/httplb_16.png
 
+`r)`
+
 .. figure:: _figures/httplb_17.png
+
+`s)`
 
 .. figure:: _figures/httplb_18.png
 
+`t)`
+
 .. figure:: _figures/httplb_19.png
 
+`u)`
+
 .. figure:: _figures/httplb_20.png
+
+`v)`
 
 .. figure:: _figures/httplb_21.png
 
