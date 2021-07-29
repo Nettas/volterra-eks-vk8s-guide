@@ -257,7 +257,7 @@ Great! The internal TCP load balancer is now configured and created, and Volterr
 3. Create public load balancer
 ******************************
 
-We will use Volterra HTTP Load Balancer as a Reverse Proxy and to route traffic to resources located on Volterra vk8s and EKS based on the URI prefix. Let's follow the steps below to create an origin pool and load balancer for our app.
+We will use Volterra HTTP Load Balancer as a Reverse Proxy to route traffic to resources located on Volterra vk8s and EKS based on the URI prefix. Let's follow the steps below to create an origin pool and load balancer for our app.
 
 
 `a)` In the **Application** tab, navigate to **Load Balancers** and then select **HTTP Load Balancers** in the options. Then click **Add HTTP Load Balancer** to open the load balancer creation form.
@@ -296,55 +296,61 @@ After that select site **Virtual Site** as site where the origin server will be 
 
 .. figure:: _figures/httplb_7.png
 
-`i)`
+`i)` Select **ANY** HTTP Method for the route and specify **/api/v1** path prefix. Then click **Configure** to add origin pools for the route.
 
 .. figure:: _figures/httplb_8.png
 
-`j)`
+`j)` Click **Add item** to add an origin pool for the route.
 
 .. figure:: _figures/httplb_9.png
 
-`k)`
+`k)` Click **Create new origin pool** to open the origin pool creation form. 
 
 .. figure:: _figures/httplb_10.png
 
-`l)`
+`l)` Enter a unique name for the origin pool, and then select **K8s Service Name of Origin Server on given Sites** as the type of origin server. Note that we will need to indicate the Origin Server **service name**, which follows the format of **servicename.namespace**. For this flow, let's specify **backend.default**. 
+
+After that select **Site** as site where the origin server will be located. Specify site reference to site object **eks-cluster**. This specifies where the origin server is located. 
+
+Select **Outside Network** on the site and enter the port **80** where endpoint service will be available. Click **Continue** to move on.
 
 .. figure:: _figures/httplb_11.png
 
-`m)`
+`m)` Click **Apply** to apply the configuration of route origin pool. This will return to the route configuration form.
 
 .. figure:: _figures/httplb_12.png
 
-`n)`
+`n)` Click **Add item** to configure the second route for the load balancer.
 
 .. figure:: _figures/httplb_13.png
 
-`o)`
+`o)` Select **ANY** HTTP Method for the route and specify **/api/v2** path prefix. Then click **Configure** to add origin pools for the route.
 
 .. figure:: _figures/httplb_14.png
 
-`p)`
+`p)` Click **Add item** to add an origin pool for the route.
 
 .. figure:: _figures/httplb_15.png
 
-`q)`
+`q)` Click **Create new origin pool** to open the origin pool creation form. 
 
 .. figure:: _figures/httplb_16.png
 
-`r)`
+`r)` Enter a unique name for the origin pool, and then select **K8s Service Name of Origin Server on given Sites** as the type of origin server. Note that we will need to indicate the Origin Server **service name**, which follows the format of **servicename.namespace**. For this flow, let's specify **buytime-nearest-store-backend.default**. 
+
+After that select site **Virtual Site** as site where the origin server will be located. Specify reference to the virtual site object - **shared/ves-io-all-res** which includes all Regional Edge Sites across Volterra. After that, select **vK8s Networks on Site** as network, which means that origin server is on vK8s network on the site. And then enter the port **80** where endpoint service will be available. Click **Continue** to move on. 
 
 .. figure:: _figures/httplb_17.png
 
-`s)`
+`s)` Click **Apply** to apply the configuration of route origin pool. This will return to the route configuration form.
 
 .. figure:: _figures/httplb_18.png
 
-`t)`
+`t)` Click **Apply** to apply the configuration of routes to the load balancer. This will return to the load balancer configuration form.
 
 .. figure:: _figures/httplb_19.png
 
-`u)`
+`u)` Finish creating the load balancer clicking **Save and Exit**.
 
 .. figure:: _figures/httplb_20.png
 
