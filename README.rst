@@ -408,9 +408,15 @@ After that select site **Virtual Site** as site where the origin server will be 
 
 .. figure:: _figures/httplb_21.png
 
-4. Check connection from web
-****************************
+Validating distributed app deployment
+######################################
 
-Open any browser and paste the copied CNAME. You will see BuyTime app that properly functions and responds the requests. 
+Open any browser and paste the copied CNAME. You will see BuyTime front-end with the Find-a-Store service, which serves geographically-dispersed user base. The  Regional Edge deployment of the BuyTime closest to the user will respond to requests and perform nearest store calculations at the customer edge. Volterra VoltMesh creates the networking to securely connect the Find-a-Store services to the one central managed K8s deployment in AWS to periodically pull data from MySQL.
+
+Let's give it a shot, by trying some US zip codes: 19001 and 98007
 
 .. figure:: _figures/httplb_22.png
+
+Congratulations, you used Volterra to connect two K8s clusters, deploy a distributed app service to the customer edge, and securely connect those deployments back to the app backend on AWS! 
+
+Now you're ready to use Volterra with your own apps & workloads!
