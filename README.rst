@@ -218,7 +218,7 @@ Then fill in listen port **3306** for the TCP proxy, and move on to creating ori
 
 `c)` The origin pools are a mechanism to configure a set of endpoints grouped together into a resource pool that is used in the load balancer configuration. 
 
-Let's create a new Origin Pool, which will be used in our load balancer by clicking **Add item** .
+Let's create a new Origin Pool, which will be used in our load balancer by clicking **Add item**.
 
 .. figure:: _figures/tcplb_mysql_3.png
 
@@ -268,27 +268,31 @@ We will use Volterra HTTP Load Balancer as a Reverse Proxy and to route traffic 
 
 .. figure:: _figures/httplb_2.png
 
-`c)`
+`c)` The origin pools are a mechanism to configure a set of endpoints grouped together into a resource pool that is used in the load balancer configuration. 
+
+Let's create a new Origin Pool, which will be used in our load balancer by clicking **Add item**.
 
 .. figure:: _figures/httplb_2_1.png
 
-`d)`
+`d)` Click **Create new origin pool** to open the origin pool creation form. 
 
 .. figure:: _figures/httplb_3.png
 
-`e)`
+`e)` Enter a unique name for the origin pool, and then select **K8s Service Name of Origin Server on given Sites** as the type of origin server. Note that we will need to indicate the Origin Server **service name**, which follows the format of **servicename.namespace**. For this flow, let's specify **frontend.default**. 
+
+After that select site **Virtual Site** as site where the origin server will be located. Specify reference to the virtual site object - **shared/ves-io-all-res** which includes all Regional Edge Sites across Volterra. After that, select **vK8s Networks on Site** as network, which means that origin server is on vK8s network on the site. And then enter the port **80** where endpoint service will be available. Click **Continue** to move on. 
 
 .. figure:: _figures/httplb_4.png
 
-`f)`
+`f)` Click **Apply** to apply the configuration of origin pool to the load balancer. This will return to the load balancer configuration form.
 
 .. figure:: _figures/httplb_5.png
 
-`g)`
+`g)` Enable **Show Advanced Fields** to configure routes for the load balancer. Click **Configure** to move on.
 
 .. figure:: _figures/httplb_6.png
 
-`h)`
+`h)` Let's add a route for the load balancer by clicking **Add item**.
 
 .. figure:: _figures/httplb_7.png
 
