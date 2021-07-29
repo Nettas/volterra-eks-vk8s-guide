@@ -190,17 +190,21 @@ Open CLI, and run the following command **kubectl --kubeconfig ./ves_default_vk8
 Deploy resources to Volterra Edge
 ##################### 
 
-After vK8s cluster has been created and tested, we can deploy our app's resources to Volterra Edge. We are going to locate frond end in Volterra Edge. Then we'll create internal TCP and public HTTP load balancers, connecting Volterra with k8s cluster (with app's backend), and Volterra with the internet, respectively. Then we will test if the resources are successfully deployed to Volterra Edge. 
+After vK8s cluster has been created and tested, we can deploy our app's resources to Volterra Edge. We are going to locate frond end in Volterra Edge. 
+
+We'll create internal TCP and public HTTP load balancers, connecting Volterra with k8s cluster (with app's backend), and Volterra with the internet, respectively. Then we will test if the resources are successfully deployed to Volterra Edge and available. 
 
 1. Deploy resources
 **********************
+
+Using Kubeconfig, we will now deploy our app to Volterra Edge moving there its front end part. Open CLI and run the following command: ****. The output will show the services created. 
 
 .. figure:: _figures/create_vk8s_11.png
 
 2. Create internal load balancer
 ********************************
 
-First of all, let's create an internal TCP load balancer to connect Volterra with k8s cluster (with app's backend), then add and configure an origin pool. Origin pools consist of endpoints and clusters, as well as routes and advertise policies that are required to make the application available to the internet. 
+Let's now create an internal TCP load balancer to connect Volterra with k8s cluster (where the app's backend is), then add and configure an origin pool. Origin pools consist of endpoints and clusters, as well as routes and advertise policies that are required to make the application available to the internet. 
 
 `a)` In the **Application** tab, navigate to **Load Balancers** and then select **TCP Load Balancers** in the options. Then click **Add TCP Load Balancer** to open the load balancer creation form.
 
@@ -244,11 +248,11 @@ Select **Outside Network** on the site and enter the port **3306** where endpoin
 
 .. figure:: _figures/tcplb_mysql_8.png
 
-`i)` Finish creating the load balancer.
+`i)` Finish creating the load balancer clicking **Save and Exit**.
 
 .. figure:: _figures/tcplb_mysql_9.png
 
-Great! The internal TCP load balancer is now configured and created. Let's move on to creating public load balancer. 
+Great! The internal TCP load balancer is now configured and created, and Volterra is connected with our k8s cluster with app's backend. Let's move on to creating public load balancer. 
 
 3. Create public load balancer
 ******************************
