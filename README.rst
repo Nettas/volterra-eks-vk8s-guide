@@ -257,8 +257,7 @@ Great! The internal TCP load balancer is now configured and created, and Volterr
 3. Create public load balancer
 ******************************
 
-We will use Volterra HTTP Load Balancer as a Reverse Proxy to route traffic to resources located on Volterra vk8s and EKS based on the URI prefix. Let's follow the steps below to create an origin pool and load balancer for our app.
-
+We will use Volterra HTTP Load Balancer as a Reverse Proxy to route traffic to resources located on Volterra vk8s and EKS based on the URI prefix. Let's follow the steps below to create load balancer for our app, an origin pool for frontend, and add routes for the load balancer - backend and nearest-store-backend.
 
 `a)` In the **Application** tab, navigate to **Load Balancers** and then select **HTTP Load Balancers** in the options. Then click **Add HTTP Load Balancer** to open the load balancer creation form.
 
