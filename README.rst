@@ -12,21 +12,30 @@ Pre-Requisites
 - kubectl
 - volterra account
 
+Guide Overview
+####################
+
+In this guide we will use a fictitious e-Commerce application scenario: a BuyTime Online store looking to improve its front-end application user experience by implementing a globally-distributed Find-a-Store service. We will get familiar (and hands-on) with the following Volterra services: VoltConsole, VoltMesh, and Volterra Global Network by F5. These are used to securely connect between Kubernetes deployments, as well as enable a distributed app services running at the geographically dispersed Regional Edge (RE) locations.
+
+In the Environment Setup section we will use the included Terraform scripts to create the required EKS infrastructure and the "initial" state app deployment. Then we'll use VoltConsole to connect two Kuberenets (K8s) clusters: an *AWS EKS cluster* and a *virtual K8s (vK8s)* running in Volterra. The vK8s is used in place of any other K8s cluster, which could be a standalone cluster or a managed K8s on any other cloud provider. Lastly, we will deploy a container-based distributed workload to the Volterra Global Network to improve the performance of the Find-a-Store service at the customer edge. 
+
+Let's get started!
 
 .. figure:: _figures/overview.png
 
-Lab Environment Setup  
+
+Environment Setup  
 ############################### 
 
 1. AWS CLI
 *************************** 
 Open IAM => Users
 
-`a)` 
+`1.1)` 
 
 .. figure:: _figures/aws_cli_config_1.png
 
-`b)` 
+`b).....` 
 
 .. figure:: _figures/aws_cli_config_1_2.png
 
@@ -95,15 +104,17 @@ terraform apply
 
 .. figure:: _figures/eks_setup_5.png
 
-Connect EKS Cluster
-##################### 
+A. Connect K8s Clusters with Volterra
+####################################### 
 
-In order to connect EKS cluster, we'll follow a few steps. First, we'll need to generate a site token, which is used among a few other things to deploy and configure a K8s cluster as a Volterra Site. Then we'll update the manifest with the generated token, and, finally, we'll deploy it.
+In this section we will use Volterra to make a connection between an AWS EKS cluster and virtual K8s running in Volterra (any other Kubernetes can be used instead, for example a managed K8s deployed on a different cloud provider). This provides a single point of deployment and management of container-based workloads to multiple K8s clusters potentially running in multiple clouds.
+
+First, we'll need to generate a site token, which is used among a few other things to deploy and configure a K8s cluster as a Volterra Site. Then we'll update the manifest with the generated token, and, finally, we'll deploy it.
 
 1. Create token
 ***************
 
-`a)` Log in the VoltConsole and go to the **System** namespace.  Then navigate to **Site Management** in the configuration menu, and select **Site Tokens** from the options pane.
+`1.1` Log in the VoltConsole and go to the **System** namespace.  Then navigate to **Site Management** in the configuration menu, and select **Site Tokens** from the options pane.
 
 .. figure:: _figures/connect_eks_cluster_1.png
 
@@ -159,12 +170,17 @@ We have now configured our Site, so let's see its status, including health score
 
 **Note**: It may take a few minutes for the health and connectivity status to get updated in the portal.
 
-Create VK8S Cluster
+B. Deploy a distributed workload to the Volterra GLobal Network Regional Edge (RE)
+#####################################################################################
+
+Volterra provides mechanism to easily deploy distributed app services to Regional Edge (RE) locations by using the Volterra Global Network. First, in Step (1) we will create a virtual K8s (vK8s) spanning multiple geographic locations, and then in the Step (2) deploy a Find-a-Store app service and an updated BuyTime Online front-end closer to the RE locations, which will improve app performance by delivering the applications closer to geographicaly-dispersed end users. 
+
+1. Create a vK8S Cluster
 ##################### 
 
-Volterra provides mechanism to easily deploy applications using vK8s across Volterra global network and make them available closer to users. Virtual Kubernetes (vK8s) clusters are fully-functional Kubernetes deployments that can span multiple geographic regions, clouds, and even on-prem environments. Let's now follow a few steps below to create a vK8s object in VoltConsole, associate with a virtual site that groups Volterra sites, download kubeconfig of the created vK8s and test connectivity.
+Virtual Kubernetes (vK8s) clusters are fully-functional Kubernetes deployments that can span multiple geographic regions, clouds, and even on-prem environments. Let's now follow a few steps below to create a vK8s object in VoltConsole, associate with a virtual site that groups Volterra sites, download kubeconfig of the created vK8s and test connectivity.
 
-1. Create cluster
+1.1. Create cluster
 *******************
 
 `a)` Select **Applications** tab and then navigate to **Virtual K8s** from the configuration menu. Click **Add virtual K8s** to create a vK8s object.
@@ -185,7 +201,7 @@ Volterra provides mechanism to easily deploy applications using vK8s across Volt
 
 The process of creating a vK8s cluster takes just a minute, and after that you will be all set to deploy and distribute app workloads onto this new infrastructure.
 
-2. Download Kubeconfig
+1.2. Download Kubeconfig
 **********************
 
 We will now need a kubeconfig file for our cluster. Kubeconfig stores information about clusters, users, namespaces, and authentication mechanisms. We will download the Kubeconfig entering the certificate expiry date when prompted. 
@@ -210,28 +226,28 @@ We will now need a kubeconfig file for our cluster. Kubeconfig stores informatio
 
 .. figure:: _figures/create_vk8s_9.png
 
-3. Check connection
+1.3. Check connection
 **********************
 
 Open CLI, and run the following command **kubectl --kubeconfig ./ves_default_vk8s.yaml cluster-info** to test if the created vK8s cluster is connected. If it's successfully accomplished, the output will show that it's running at Volterra.  
 
 .. figure:: _figures/create_vk8s_10.png
 
-Deploy resources to Volterra Edge
-##################### 
+2. Deploy resources to Volterra Edge
+##################################### 
 
-After vK8s cluster has been created and tested, we can deploy our app's resources to Volterra Edge. We are going to locate frontend and nearest-store-backend in Volterra Edge. 
+After vK8s cluster has been created and tested, we can target our Find-a-Store service and an updated version of the BuyTime front-end to the geographically distributed Regional Edge (RE) locations. The Find-a-Store service will use VoltMesh to securely connect back to the deployment on AWS VPC in order retrieve store location and US ZIP code & geolocation data. 
 
 We'll create internal TCP and public HTTP load balancers, connecting Volterra with EKS cluster (with app's backend), and Volterra with the internet, respectively. Then we will test if the resources are successfully deployed to Volterra Edge and available. 
 
-1. Deploy resources
+2.1. Deploy resources
 **********************
 
 Using Kubeconfig, we will now deploy our app to Volterra Edge moving there its frontend and nearest-store-backend. Open CLI and run the following command: **kubectl --kubeconfig ./ves_default_vk8s.yaml apply -f vk8s-deployment.yaml**. The output will show the services created. 
 
 .. figure:: _figures/create_vk8s_11.png
 
-2. Create internal load balancer
+2.2. Create internal load balancer
 ********************************
 
 Let's now create an internal TCP load balancer to connect Volterra with k8s cluster (where the app's backend is), then add and configure an origin pool. Origin pools consist of endpoints and clusters, as well as routes and advertise policies that are required to make the application available to the internet. 
