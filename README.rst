@@ -145,7 +145,7 @@ Volterra provides mechanism to easily deploy applications using vK8s across Volt
 
 .. figure:: _figures/create_vk8s_2.png
 
-`c)` Check the box just next to **ves-io-all-res** to associates the virtual site that selects all Volterra network cloud sites, and click **Select Vsite Ref**.
+`c)` Check the box just next to **ves-io-all-res** to associate the virtual site that selects all Volterra network cloud sites, and click **Select Vsite Ref**.
 
 .. figure:: _figures/create_vk8s_3.png
 
