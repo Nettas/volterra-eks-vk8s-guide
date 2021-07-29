@@ -3,29 +3,30 @@ volterra-eks-vk8s-lab
 
 .. contents:: Table of Contents
 
-Pre-Requisites
-###############
-
-- AWS Account
-- aws cli
-- terraform
-- kubectl
-- volterra account
-
 Guide Overview
 ####################
 
 In this guide we will use a fictitious e-Commerce application scenario: a BuyTime Online store looking to improve its front-end application user experience by implementing a globally-distributed Find-a-Store service. We will get familiar (and hands-on) with the following Volterra services: VoltConsole, VoltMesh, and Volterra Global Network by F5. These are used to securely connect between Kubernetes deployments, as well as enable a distributed app services running at the geographically dispersed Regional Edge (RE) locations.
 
-In the Environment Setup section we will use the included Terraform scripts to create the required EKS infrastructure and the "initial" state app deployment. Then we'll use VoltConsole to connect two Kuberenets (K8s) clusters: an *AWS EKS cluster* and a *virtual K8s (vK8s)* running in Volterra. The vK8s is used in place of any other K8s cluster, which could be a standalone cluster or a managed K8s on any other cloud provider. Lastly, we will deploy a container-based distributed workload to the Volterra Global Network to improve the performance of the Find-a-Store service at the customer edge. 
+In the AWS Environment Setup section we will use the included Terraform scripts to create the required EKS infrastructure and the "initial" state app deployment. Then we'll use VoltConsole to connect two Kuberenets (K8s) clusters: an *AWS EKS cluster* and a *virtual K8s (vK8s)* running in Volterra. The vK8s is used in place of any other K8s cluster, which could be a standalone cluster or a managed K8s on any other cloud provider. Lastly, we will deploy a container-based distributed workload to the Volterra Global Network to improve the performance of the Find-a-Store service at the customer edge. 
 
 Let's get started!
 
 .. figure:: _figures/overview.png
 
+Pre-Requisites
+###############
 
-Environment Setup  
+- AWS Account http://link
+- AWS Cli http://link
+- Terraform http://link
+- Kubectl https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html
+- Volterra account  https://volterra.io
+
+AWS Environment Setup  
 ############################### 
+
+The initial environment in AWS contains the "initial" deployment of the BuyTime Online *without* the Find-a-Service function, running on the AWS EKS managed K8s cluster. This cluster will be subsequently connected to the vK8s deployment of the Find-a-Store service on the Regional Edge (RE), providing secure networking from the distributed Find-a-Store service to the MySQL running on EKS to periodically pull US Zip code & store coordinate data from a central location. 
 
 1. AWS CLI
 *************************** 
@@ -103,6 +104,10 @@ terraform apply
 .. figure:: _figures/eks_setup_4.png
 
 .. figure:: _figures/eks_setup_5.png
+
+`p)`
+
+Let's now see the what the BuyTime Online deployment looks like before we begin connecting the 
 
 A. Connect K8s Clusters with Volterra
 ####################################### 
