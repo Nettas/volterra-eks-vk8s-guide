@@ -353,11 +353,13 @@ After that select site **Virtual Site** as site where the origin server will be 
 
 .. figure:: _figures/httplb_20.png
 
-`v)`
+`v)` Let's now copy the generated CNAME for our HTTP load balancer to see if the app, whose frontend and nearest-store-backend are located in Volterra Edge, works.
 
 .. figure:: _figures/httplb_21.png
 
 4. Check connection from web
 ****************************
+
+Open any browser and paste the copied CNAME. You will see BuyTime app that properly functions and responds the requests. 
 
 .. figure:: _figures/httplb_22.png
