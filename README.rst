@@ -22,31 +22,61 @@ Lab Environment Setup
 *************************** 
 Open IAM => Users
 
+`a)` 
+
 .. figure:: _figures/aws_cli_config_1.png
+
+`b)` 
 
 .. figure:: _figures/aws_cli_config_1_2.png
 
+`c)` 
+
 .. figure:: _figures/aws_cli_config_1_3.png
+
+`d)` 
 
 .. figure:: _figures/aws_cli_config_1_4.png
 
+`e)` 
+
 .. figure:: _figures/aws_cli_config_1_5.png
+
+`f)` Let's now create an IAM user via the console. In the navigation pane, choose **Users**.
 
 .. figure:: _figures/aws_cli_config_2.png
 
+`g)` Then select **Add users**. This will open the page with user details. 
+
 .. figure:: _figures/aws_cli_config_3.png
+
+`h)` Enter the **User name** for the new user. Note that this is the sign-in name for AWS. After that select the type of access the user will have. For this flow, let's select **Programmatic access**. This creates an access key ID and secret access key for the AWS API, CLI, SDK for each user. You can view or download the access keys when you get to the Final page. Move on to set up permissions by clicking **Next: Permissions**.
 
 .. figure:: _figures/aws_cli_config_4.png
 
+`i)` There are three permission options available, but for this flow let's select **Attach existing policies directly**. This will show a list of the AWS managed and customer managed policies in your account. Tick **VolterraLabsPolicy** to apply to the new user. Click **Next: Tags** to move on.
+
 .. figure:: _figures/aws_cli_config_5.png
+
+`j)` Tag setting is optional, so let's move on by clicking **Next: Review**. 
 
 .. figure:: _figures/aws_cli_config_6.png
 
+`k)` This page shows all of the choices you made up to this point. When you are ready to proceed, choose **Create user**.
+
 .. figure:: _figures/aws_cli_config_7.png
+
+`l)` To view the users' access keys (access key ID and secret access key), choose **Show** next to each password and access key. To save the access key, choose **Download .csv** and then save the file to a safe location. Click **Close** to proceed. 
 
 .. figure:: _figures/aws_cli_config_8.png
 
+Note that you will not have access to the secret key again after this step.
+
+`m)` 
+
 .. figure:: _figures/aws_cli_config_9.png
+
+`n)` 
 
 deploy kubectl to AWS
 
