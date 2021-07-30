@@ -49,7 +49,7 @@ Sign in the AWS Management Console and follow a few steps below to create IAM po
 
 .. figure:: _figures/aws_cli_config_1_4.png
 
-`1.5` On the **Review policy** page, type a **Name** (let's use **VolterraGuidePolicy** for this guide). Description field is optional, so let's skip it. In the **Summary** section, you can see the permissions that are granted by your policy. Click **Create policy** when you are ready to save the policy.
+`1.5` On the **Review policy** page, type a **Name** (let's use **DemoEKSClusterPolicy** for this guide). Description field is optional, so let's skip it. In the **Summary** section, you can see the permissions that are granted by your policy. Click **Create policy** when you are ready to save the policy.
 
 .. figure:: _figures/aws_cli_config_1_5.png
 
@@ -65,7 +65,7 @@ Sign in the AWS Management Console and follow a few steps below to create IAM po
 
 .. figure:: _figures/aws_cli_config_4.png
 
-`1.9` There are three permission options available, but for this flow let's select **Attach existing policies directly**. This will show a list of the AWS managed and customer managed policies in your account. Tick **VolterraGuidePolicy** to apply to the new user. Click **Next: Tags** to move on.
+`1.9` There are three permission options available, but for this flow let's select **Attach existing policies directly**. This will show a list of the AWS managed and customer managed policies in your account. Tick **DemoEKSClusterPolicy** to apply to the new user. Click **Next: Tags** to move on.
 
 .. figure:: _figures/aws_cli_config_5.png
 
@@ -99,15 +99,21 @@ Note that you will not have access to the secret key again after this step.
 
 .. figure:: _figures/eks_setup_3.png
 
-`1.17` After the terraform plan has been executed, let's configure kubectl so that we could connect to an Amazon EKS cluster. Run the following command: **aws eks update-kubeconfig --region eu-west-2 --name f5guide-eks**.
+`1.17` After the terraform plan has been executed, let's configure kubectl so that we could connect to an Amazon EKS cluster. Run the following command: **aws eks update-kubeconfig --region eu-west-2 --name eks-cluster**.
 
 .. figure:: _figures/eks_setup_4.png
 
-`1.18` One step left - deploying the BuyTime Online resources to AWS EKS K8s cluster. Run the following command: **kubectl apply -f eks-deployment.yaml**.
+`1.18` One step left - deploying the BuyTime Online resources to AWS EKS K8s cluster. Go to the **k8s-deployments** directory and run the following command: **kubectl apply -f eks-deployment.yaml**.
 
 .. figure:: _figures/eks_setup_5.png
 
-Let's now see the what the BuyTime Online deployment looks like before we begin connecting the 
+`1.19` Let's now see the what the BuyTime Online deployment looks like on the EKS cluster. For that we need to get a LoadBalancer endpoint name. Run the **kubectl get services** command and copy buytime-external FQDN.
+
+.. figure:: _figures/eks_setup_6.png
+
+`1.20` Open FQDN in the browser. It may take some time to create resources.
+
+.. figure:: _figures/eks_setup_7.png
 
 A. Connect K8s Clusters with Volterra
 ####################################### 
@@ -314,7 +320,7 @@ We will use Volterra HTTP Load Balancer as a Reverse Proxy to route traffic to r
 
 .. figure:: _figures/httplb_1.png
 
-`b)` First, enter the load balancer name. Then provide a domain name for our workload: a domain can be delegated to Volterra, so that Domain Name Service (DNS) entries can be created quickly in order to deploy and route traffic to our workload within seconds. Let’s use **buytime.demo.f5guide** for this flow. Finally, move on to creating an origin pool that will be used for this load balancer by clicking **Configure**.
+`b)` First, enter the load balancer name. Then provide a domain name for our workload: a domain can be delegated to Volterra, so that Domain Name Service (DNS) entries can be created quickly in order to deploy and route traffic to our workload within seconds. Let’s use **buytime.example.com** for this flow. Finally, move on to creating an origin pool that will be used for this load balancer by clicking **Configure**.
 
 .. figure:: _figures/httplb_2.png
 
@@ -416,6 +422,8 @@ Open any browser and paste the copied CNAME. You will see BuyTime front-end with
 Let's give it a shot, by trying some US zip codes: 19001 and 98007
 
 .. figure:: _figures/httplb_22.png
+
+.. figure:: _figures/httplb_23.png
 
 Congratulations, you used Volterra to connect two K8s clusters, deploy a distributed app service to the customer edge, and securely connect those deployments back to the app backend on AWS! 
 
