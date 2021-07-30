@@ -33,43 +33,43 @@ The initial environment in AWS contains the "initial" deployment of the BuyTime 
 
 Sign in the AWS Management Console and follow a few steps below to create IAM policies and apply them to the created user.  
 
-`1.1)` Type in **IAM** in the search field to find and proceed to the **IAM - Manage access to AWS resources**.  
+`1.1` Type in **IAM** in the search field to find and proceed to the **IAM - Manage access to AWS resources**.  
 
 .. figure:: _figures/aws_cli_config_1.png
 
-`1.2)` In the navigation pane on the left, choose **Policies**. Then choose **Create Policy**.
+`1.2` In the navigation pane on the left, choose **Policies**. Then choose **Create Policy**.
 
 .. figure:: _figures/aws_cli_config_1_2.png
 
-`1.3)` Choose the **JSON** tab. Copy the JSON policy document `here <https://github.com/yoctoalex/volterra-eks-vk8s-lab/blob/f7d56268056056c2b0b8f345a2318e08de52b528/iam-policy.json>`_  and paste it into the open window. Then click **Next: Tags**.
+`1.3` Choose the **JSON** tab. Copy the JSON policy document `here <https://github.com/yoctoalex/volterra-eks-vk8s-lab/blob/f7d56268056056c2b0b8f345a2318e08de52b528/iam-policy.json>`_  and paste it into the open window. Then click **Next: Tags**.
 
 .. figure:: _figures/aws_cli_config_1_3.png
 
-`1.4)` This page is optional. You can add metadata to the policy by attaching tags as key-value pairs. Let's skip this option and proceed by clicking **Next: Review**. 
+`1.4` This page is optional. You can add metadata to the policy by attaching tags as key-value pairs. Let's skip this option and proceed by clicking **Next: Review**. 
 
 .. figure:: _figures/aws_cli_config_1_4.png
 
-`1.5)` On the **Review policy** page, type a **Name** (let's use **VolterraLabsPolicy** for this guide). Description field is optional, so let's skip it. In the **Summary** section, you can see the permissions that are granted by your policy. Click **Create policy** when you are ready to save the policy.
+`1.5` On the **Review policy** page, type a **Name** (let's use **VolterraLabsPolicy** for this guide). Description field is optional, so let's skip it. In the **Summary** section, you can see the permissions that are granted by your policy. Click **Create policy** when you are ready to save the policy.
 
 .. figure:: _figures/aws_cli_config_1_5.png
 
-`1.6)` Let's now create an IAM user. In the navigation pane, choose **Users**.
+`1.6` Let's now create an IAM user. In the navigation pane, choose **Users**.
 
 .. figure:: _figures/aws_cli_config_2.png
 
-`1.7)` Then select **Add users**. This will open the page with user details. 
+`1.7` Then select **Add users**. This will open the page with user details. 
 
 .. figure:: _figures/aws_cli_config_3.png
 
-`1.8)` Enter the **User name** for the new user. Note that this is the sign-in name for AWS. After that select the type of access the user will have. For this flow, let's select **Programmatic access**. This creates an access key ID and secret access key for the AWS API, CLI, SDK for each user. You can view or download the access keys when you get to the Final page. Move on to set up permissions by clicking **Next: Permissions**.
+`1.8` Enter the **User name** for the new user. Note that this is the sign-in name for AWS. After that select the type of access the user will have. For this flow, let's select **Programmatic access**. This creates an access key ID and secret access key for the AWS API, CLI, SDK for each user. You can view or download the access keys when you get to the Final page. Move on to set up permissions by clicking **Next: Permissions**.
 
 .. figure:: _figures/aws_cli_config_4.png
 
-`1.9)` There are three permission options available, but for this flow let's select **Attach existing policies directly**. This will show a list of the AWS managed and customer managed policies in your account. Tick **VolterraLabsPolicy** to apply to the new user. Click **Next: Tags** to move on.
+`1.9` There are three permission options available, but for this flow let's select **Attach existing policies directly**. This will show a list of the AWS managed and customer managed policies in your account. Tick **VolterraLabsPolicy** to apply to the new user. Click **Next: Tags** to move on.
 
 .. figure:: _figures/aws_cli_config_5.png
 
-`1.10)` Tag setting is optional, so let's move on by clicking **Next: Review**. 
+`1.10` Tag setting is optional, so let's move on by clicking **Next: Review**. 
 
 .. figure:: _figures/aws_cli_config_6.png
 
@@ -77,17 +77,17 @@ Sign in the AWS Management Console and follow a few steps below to create IAM po
 
 .. figure:: _figures/aws_cli_config_7.png
 
-`1.12)` To view the users' access keys (access key ID and secret access key), choose **Show** next to each password and access key. To save the access key, choose **Download .csv** and then save the file to a safe location. Click **Close** to proceed. 
+`1.12` To view the users' access keys (access key ID and secret access key), choose **Show** next to each password and access key. Copy or save the access key. Click **Close** to proceed. 
 
 .. figure:: _figures/aws_cli_config_8.png
 
 Note that you will not have access to the secret key again after this step.
 
-`1.13)` 
+`1.13` 
 
 .. figure:: _figures/aws_cli_config_9.png
 
-`1.14)` 
+`1.14` 
 
 deploy kubectl to AWS
 
@@ -98,15 +98,21 @@ terraform apply
 
 .. figure:: _figures/eks_setup_1.png
 
+`1.15`
+
 .. figure:: _figures/eks_setup_2.png
+
+`1.16`
 
 .. figure:: _figures/eks_setup_3.png
 
+`1.17`
+
 .. figure:: _figures/eks_setup_4.png
 
-.. figure:: _figures/eks_setup_5.png
+`1.18`
 
-`p)`
+.. figure:: _figures/eks_setup_5.png
 
 Let's now see the what the BuyTime Online deployment looks like before we begin connecting the 
 
@@ -306,60 +312,60 @@ Select **Outside Network** on the site and enter the port **3306** where endpoin
 
 Great! The internal TCP load balancer is now configured and created, and Volterra is connected with our EKS cluster with app's backend. Let's move on to creating public load balancer. 
 
-3. Create public load balancer
+2.3. Create public load balancer
 ******************************
 
 We will use Volterra HTTP Load Balancer as a Reverse Proxy to route traffic to resources located on Volterra vk8s and EKS based on the URI prefix. Let's follow the steps below to create load balancer for our app, an origin pool for frontend, and add routes for the load balancer - backend and nearest-store-backend.
 
-`3.1` In the **Application** tab, navigate to **Load Balancers** and then select **HTTP Load Balancers** in the options. Then click **Add HTTP Load Balancer** to open the load balancer creation form.
+`a)` In the **Application** tab, navigate to **Load Balancers** and then select **HTTP Load Balancers** in the options. Then click **Add HTTP Load Balancer** to open the load balancer creation form.
 
 .. figure:: _figures/httplb_1.png
 
-`3.2` First, enter the load balancer name. Then provide a domain name for our workload: a domain can be delegated to Volterra, so that Domain Name Service (DNS) entries can be created quickly in order to deploy and route traffic to our workload within seconds. Let’s use **buytime.demo.f5lab** for this flow. Finally, move on to creating an origin pool that will be used for this load balancer by clicking **Configure**.
+`b)`` First, enter the load balancer name. Then provide a domain name for our workload: a domain can be delegated to Volterra, so that Domain Name Service (DNS) entries can be created quickly in order to deploy and route traffic to our workload within seconds. Let’s use **buytime.demo.f5lab** for this flow. Finally, move on to creating an origin pool that will be used for this load balancer by clicking **Configure**.
 
 .. figure:: _figures/httplb_2.png
 
-`3.3` The origin pools are a mechanism to configure a set of endpoints grouped together into a resource pool that is used in the load balancer configuration. 
+`c)`` The origin pools are a mechanism to configure a set of endpoints grouped together into a resource pool that is used in the load balancer configuration. 
 
 Let's create a new Origin Pool, which will be used in our load balancer by clicking **Add item**.
 
 .. figure:: _figures/httplb_2_1.png
 
-`3.4` Click **Create new origin pool** to open the origin pool creation form. 
+`d)` Click **Create new origin pool** to open the origin pool creation form. 
 
 .. figure:: _figures/httplb_3.png
 
-`3.5` Enter a unique name for the origin pool, and then select **K8s Service Name of Origin Server on given Sites** as the type of origin server. Note that we will need to indicate the Origin Server **service name**, which follows the format of **servicename.namespace**. For this flow, let's specify **frontend.default**. 
+`e)` Enter a unique name for the origin pool, and then select **K8s Service Name of Origin Server on given Sites** as the type of origin server. Note that we will need to indicate the Origin Server **service name**, which follows the format of **servicename.namespace**. For this flow, let's specify **frontend.default**. 
 
 After that select site **Virtual Site** as site where the origin server will be located. Specify reference to the virtual site object - **shared/ves-io-all-res** which includes all Regional Edge Sites across Volterra. After that, select **vK8s Networks on Site** as network, which means that origin server is on vK8s network on the site. And then enter the port **80** where endpoint service will be available. Click **Continue** to move on. 
 
 .. figure:: _figures/httplb_4.png
 
-`3.6` Click **Apply** to apply the configuration of origin pool to the load balancer. This will return to the load balancer configuration form.
+`f)`` Click **Apply** to apply the configuration of origin pool to the load balancer. This will return to the load balancer configuration form.
 
 .. figure:: _figures/httplb_5.png
 
-`3.7` Enable **Show Advanced Fields** to configure routes for the load balancer. Click **Configure** to move on.
+`g)` Enable **Show Advanced Fields** to configure routes for the load balancer. Click **Configure** to move on.
 
 .. figure:: _figures/httplb_6.png
 
-`3.8` Let's add a route for the load balancer by clicking **Add item**.
+`h)` Let's add a route for the load balancer by clicking **Add item**.
 
 .. figure:: _figures/httplb_7.png
 
-`3.9` Select **ANY** HTTP Method for the route and specify **/api/v1** path prefix. Then click **Configure** to add origin pools for the route.
+`i)` Select **ANY** HTTP Method for the route and specify **/api/v1** path prefix. Then click **Configure** to add origin pools for the route.
 
 .. figure:: _figures/httplb_8.png
 
-`3.10` Click **Add item** to add an origin pool for the route.
+`j)` Click **Add item** to add an origin pool for the route.
 
 .. figure:: _figures/httplb_9.png
 
-`3.11` Click **Create new origin pool** to open the origin pool creation form. 
+`k)` Click **Create new origin pool** to open the origin pool creation form. 
 
 .. figure:: _figures/httplb_10.png
 
-`3.12` Enter a unique name for the origin pool, and then select **K8s Service Name of Origin Server on given Sites** as the type of origin server. Note that we will need to indicate the Origin Server **service name**, which follows the format of **servicename.namespace**. For this flow, let's specify **backend.default**. 
+`l)` Enter a unique name for the origin pool, and then select **K8s Service Name of Origin Server on given Sites** as the type of origin server. Note that we will need to indicate the Origin Server **service name**, which follows the format of **servicename.namespace**. For this flow, let's specify **backend.default**. 
 
 After that select **Site** as site where the origin server will be located. Specify site reference to site object **eks-cluster**. This specifies where the origin server is located. 
 
@@ -367,45 +373,45 @@ Select **Outside Network** on the site and enter the port **80** where endpoint 
 
 .. figure:: _figures/httplb_11.png
 
-`3.13` Click **Apply** to apply the configuration of route origin pool. This will return to the route configuration form.
+`m)` Click **Apply** to apply the configuration of route origin pool. This will return to the route configuration form.
 
 .. figure:: _figures/httplb_12.png
 
-`3.14` Click **Add item** to configure the second route for the load balancer.
+`n)` Click **Add item** to configure the second route for the load balancer.
 
 .. figure:: _figures/httplb_13.png
 
-`3.15` Select **ANY** HTTP Method for the route and specify **/api/v2** path prefix. Then click **Configure** to add origin pools for the route.
+`o)` Select **ANY** HTTP Method for the route and specify **/api/v2** path prefix. Then click **Configure** to add origin pools for the route.
 
 .. figure:: _figures/httplb_14.png
 
-`3.16` Click **Add item** to add an origin pool for the route.
+`p)` Click **Add item** to add an origin pool for the route.
 
 .. figure:: _figures/httplb_15.png
 
-`3.17` Click **Create new origin pool** to open the origin pool creation form. 
+`q)` Click **Create new origin pool** to open the origin pool creation form. 
 
 .. figure:: _figures/httplb_16.png
 
-`3.18` Enter a unique name for the origin pool, and then select **K8s Service Name of Origin Server on given Sites** as the type of origin server. Note that we will need to indicate the Origin Server **service name**, which follows the format of **servicename.namespace**. For this flow, let's specify **buytime-nearest-store-backend.default**. 
+`r)` Enter a unique name for the origin pool, and then select **K8s Service Name of Origin Server on given Sites** as the type of origin server. Note that we will need to indicate the Origin Server **service name**, which follows the format of **servicename.namespace**. For this flow, let's specify **buytime-nearest-store-backend.default**. 
 
 After that select site **Virtual Site** as site where the origin server will be located. Specify reference to the virtual site object - **shared/ves-io-all-res** which includes all Regional Edge Sites across Volterra. After that, select **vK8s Networks on Site** as network, which means that origin server is on vK8s network on the site. And then enter the port **80** where endpoint service will be available. Click **Continue** to move on. 
 
 .. figure:: _figures/httplb_17.png
 
-`3.19` Click **Apply** to apply the configuration of route origin pool. This will return to the route configuration form.
+`s)` Click **Apply** to apply the configuration of route origin pool. This will return to the route configuration form.
 
 .. figure:: _figures/httplb_18.png
 
-`3.20` Click **Apply** to apply the configuration of routes to the load balancer. This will return to the load balancer configuration form.
+`t)` Click **Apply** to apply the configuration of routes to the load balancer. This will return to the load balancer configuration form.
 
 .. figure:: _figures/httplb_19.png
 
-`3.21` Finish creating the load balancer clicking **Save and Exit**.
+`u)` Finish creating the load balancer clicking **Save and Exit**.
 
 .. figure:: _figures/httplb_20.png
 
-`3.22` Let's now copy the generated CNAME for our HTTP load balancer to see if the app, whose frontend and nearest-store-backend are located in Volterra Edge, works.
+`v)` Let's now copy the generated CNAME for our HTTP load balancer to see if the app, whose frontend and nearest-store-backend are located in Volterra Edge, works.
 
 .. figure:: _figures/httplb_21.png
 
