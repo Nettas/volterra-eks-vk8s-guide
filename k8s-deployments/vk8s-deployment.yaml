@@ -1,19 +1,27 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: dockerio
+data:
+  .dockerconfigjson: eyJhdXRocyI6eyJkb2NrZXIuaW8iOnsidXNlcm5hbWUiOiJpbnRlcmVzdGluZ3N0b3JhZ2UiLCJwYXNzd29yZCI6IjMwZTRjYThmLWEwMzUtNDRkNS1hZDQyLWY5NDg3YjcwMjFiNSIsImF1dGgiOiJhVzUwWlhKbGMzUnBibWR6ZEc5eVlXZGxPak13WlRSallUaG1MV0V3TXpVdE5EUmtOUzFoWkRReUxXWTVORGczWWpjd01qRmlOUT09In19fQ==
+type: kubernetes.io/dockerconfigjson
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: buytime-nearest-store-backend
+  name: find-a-store-service
 spec:
   selector:
     matchLabels:
-      app: buytime-nearest-store-backend
+      app: find-a-store-service
   template:
     metadata:
       labels:
-        app: buytime-nearest-store-backend
+        app: find-a-store-service
     spec:
       containers:
         - name: server
-          image: public.ecr.aws/r2r2l6v3/buytime-nearest-store-backend:v1
+          image: docker.io/interestingstorage/buytime-find-a-store-service:v1
           imagePullPolicy: Always
           ports:
             - containerPort: 9339
@@ -22,15 +30,17 @@ spec:
               value: "buytime-database.internal"
             - name: MYSQL_DB
               value: "store_location"
+      imagePullSecrets:
+        - name: dockerio
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: buytime-nearest-store-backend
+  name: find-a-store-service
 spec:
   type: ClusterIP
   selector:
-    app: buytime-nearest-store-backend
+    app: find-a-store-service
   ports:
     - name: http
       port: 80
@@ -51,10 +61,12 @@ spec:
     spec:
       containers:
         - name: server
-          image: public.ecr.aws/r2r2l6v3/buytime-fronted:v1
+          image: docker.io/interestingstorage/buytime-frontend:v2
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
+      imagePullSecrets:
+        - name: dockerio            
 ---
 apiVersion: v1
 kind: Service

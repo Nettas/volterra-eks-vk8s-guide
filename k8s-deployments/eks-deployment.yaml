@@ -1,44 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: buytime-nearest-store-backend
-spec:
-  selector:
-    matchLabels:
-      app: buytime-nearest-store-backend
-  template:
-    metadata:
-      labels:
-        app: buytime-nearest-store-backend
-    spec:
-      containers:
-        - name: server
-          image: public.ecr.aws/r2r2l6v3/buytime-nearest-store-backend:v1
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 9339
-          env:
-            - name: MYSQL_HOST
-              value: "buytime-database"
-            - name: MYSQL_DB
-              value: "store_location"
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: buytime-nearest-store-backend
-spec:
-  type: ClusterIP
-  selector:
-    app: buytime-nearest-store-backend
-  ports:
-    - name: http
-      port: 80
-      targetPort: 9339
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
   name: buytime-rerverse-proxy
 spec:
   selector:
@@ -51,7 +13,7 @@ spec:
     spec:
       containers:
         - name: server
-          image: public.ecr.aws/r2r2l6v3/buytime-rp:v1
+          image: interestingstorage/buytime-rp:v1
           imagePullPolicy: Always
           ports:
             - containerPort: 80
@@ -84,7 +46,7 @@ spec:
     spec:
       containers:
         - name: server
-          image: public.ecr.aws/r2r2l6v3/buytime-db:v1
+          image: interestingstorage/buytime-db:v1
           imagePullPolicy: Always
           ports:
             - containerPort: 3306
@@ -117,7 +79,7 @@ spec:
     spec:
       containers:
         - name: server
-          image: public.ecr.aws/r2r2l6v3/buytime-backend:v1
+          image: interestingstorage/buytime-backend:v1
           imagePullPolicy: Always
           ports:
             - containerPort: 9192
@@ -153,7 +115,7 @@ spec:
     spec:
       containers:
         - name: server
-          image: public.ecr.aws/r2r2l6v3/buytime-fronted:v1
+          image: interestingstorage/buytime-frontend:v1
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
