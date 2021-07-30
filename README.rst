@@ -83,34 +83,27 @@ Sign in the AWS Management Console and follow a few steps below to create IAM po
 
 Note that you will not have access to the secret key again after this step.
 
-`1.13` 
+`1.13` Now move on to CLI and run the command **aws configure**, which will set up the AWS CLI installation, and we will be able to use the AWS account we've created. The AWS CLI stores this information in a profile (a collection of settings) named 'default' in the credentials file. 
 
 .. figure:: _figures/aws_cli_config_9.png
 
-`1.14` 
-
-deploy kubectl to AWS
-
-cd terraform
-terraform init
-terraform plan
-terraform apply
+`1.14` After successful setting up AWS CLI installation, we will need to run the **terraform init** command, which will initialize a working directory containing Terraform configuration files. 
 
 .. figure:: _figures/eks_setup_1.png
 
-`1.15`
+`1.15` After we prepared the current working directory for use with Terraform by performing several different initialization steps, let's run the **terraform plan** command. This will create an execution plan. 
 
 .. figure:: _figures/eks_setup_2.png
 
-`1.16`
+`1.16` Run the **terraform apply** command that executes the actions proposed in the terraform plan created a step above.
 
 .. figure:: _figures/eks_setup_3.png
 
-`1.17`
+`1.17` After the terraform plan has been executed, let's configure kubectl so that we could connect to an Amazon EKS cluster. Run the following command: **aws eks update-kubeconfig --region eu-west-2 --name f5guide-eks**.
 
 .. figure:: _figures/eks_setup_4.png
 
-`1.18`
+`1.18` One step left - deploying the BuyTime Online resources to AWS EKS K8s cluster. Run the following command: **kubectl apply -f eks-deployment.yaml**.
 
 .. figure:: _figures/eks_setup_5.png
 
