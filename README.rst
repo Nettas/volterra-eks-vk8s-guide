@@ -31,7 +31,9 @@ The initial environment in AWS contains the "initial" deployment of the BuyTime 
 1. AWS CLI
 *************************** 
 
-Sign in the AWS Management Console and follow a few steps below to create IAM policies and apply them to the created user.  
+Sign in the AWS Management Console and follow a few steps below to create a new user with IAM policies required for the guide. 
+
+In the guide we will use **us-west-1** AWS region. If you would like to use another, you can change the region setting in the **/terraform/vpc.tf** file and in the step 1.16.
 
 `1.1` Type in **IAM** in the search field to find and proceed to the **IAM - Manage access to AWS resources**.  
 
@@ -95,7 +97,7 @@ Note that you will not have access to the secret key again after this step.
 
 .. figure:: _figures/eks_setup_3.png
 
-`1.16` After the terraform plan has been executed, let's configure kubectl so that we could connect to an Amazon EKS cluster. Run the following command: **aws eks update-kubeconfig --region eu-west-2 --name eks-cluster**.
+`1.16` After the terraform plan has been executed, let's configure kubectl so that we could connect to an Amazon EKS cluster. Run the following command: **aws eks update-kubeconfig --region us-west-1 --name eks-cluster**.
 
 .. figure:: _figures/eks_setup_4.png
 
@@ -314,13 +316,13 @@ Great! The internal TCP load balancer is now configured and created, and Volterr
 2.3. Create public load balancer
 ******************************
 
-We will use Volterra HTTP Load Balancer as a Reverse Proxy to route traffic to resources located on Volterra vk8s and EKS based on the URI prefix. Let's follow the steps below to create load balancer for our app, an origin pool for frontend, and add routes for the load balancer - backend and Find-a-Store service.
+We will use Volterra HTTP Load Balancer as a Reverse Proxy to route traffic to resources located on Volterra vk8s and EKS based on the URI prefix. Let's follow the steps below to create load balancer for our app, an origin pool for **frontend**, and add routes for the load balancer - **backend** and **find-a-store-service**.
 
 `a)` In the **Application** tab, navigate to **Load Balancers** and then select **HTTP Load Balancers** in the options. Then click **Add HTTP Load Balancer** to open the load balancer creation form.
 
 .. figure:: _figures/httplb_1.png
 
-`b)` First, enter the load balancer name. Then provide a domain name for our workload: a domain can be delegated to Volterra, so that Domain Name Service (DNS) entries can be created quickly in order to deploy and route traffic to our workload within seconds. Let’s use **buytime.example.com** for this flow. Finally, move on to creating an origin pool that will be used for this load balancer by clicking **Configure**.
+`b)` First, enter the load balancer name. Then provide a domain name for our workload: a domain can be delegated to Volterra, so that Domain Name Service (DNS) entries can be created quickly in order to deploy and route traffic to our workload within seconds. Let’s use **buytime.example.com** as an example. Finally, move on to creating an origin pool that will be used for this load balancer by clicking **Configure**.
 
 .. figure:: _figures/httplb_2.png
 
@@ -392,7 +394,7 @@ Select **Outside Network** on the site and enter the port **80** where endpoint 
 
 .. figure:: _figures/httplb_16.png
 
-`r)` Enter a unique name for the origin pool, and then select **K8s Service Name of Origin Server on given Sites** as the type of origin server. Note that we will need to indicate the Origin Server **service name**, which follows the format of **servicename.namespace**. For this flow, let's specify **buytime-find-a-store-service.default**. 
+`r)` Enter a unique name for the origin pool, and then select **K8s Service Name of Origin Server on given Sites** as the type of origin server. Note that we will need to indicate the Origin Server **service name**, which follows the format of **servicename.namespace**. For this flow, let's specify **find-a-store-service.default**. 
 
 After that select site **Virtual Site** as site where the origin server will be located. Specify reference to the virtual site object - **shared/ves-io-all-res** which includes all Regional Edge Sites across Volterra. After that, select **vK8s Networks on Site** as network, which means that origin server is on vK8s network on the site. And then enter the port **80** where endpoint service will be available. Click **Continue** to move on. 
 
@@ -417,7 +419,7 @@ After that select site **Virtual Site** as site where the origin server will be 
 Validating distributed app deployment
 ######################################
 
-Open any browser and paste the copied CNAME. You will see BuyTime front-end with the Find-a-Store service, which serves geographically-dispersed user base. The  Regional Edge deployment of the BuyTime closest to the user will respond to requests and perform nearest store calculations at the customer edge. Volterra VoltMesh creates the networking to securely connect the Find-a-Store services to the one central managed K8s deployment in AWS to periodically pull data from MySQL.
+Open any browser and paste the copied CNAME. You will see BuyTime front-end with the Find-a-Store service, which serves geographically-dispersed user base. The  Regional Edge deployment of the BuyTime closest to the user will respond to requests and perform nearest store calculations at the customer edge. Volterra VoltMesh creates the networking to securely connect the Find-a-Store services to the one central managed K8s deployment in AWS to periodically pull data from DataBase.
 
 Let's give it a shot, by trying some US zip codes: 19001 and 98007
 
