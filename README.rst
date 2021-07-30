@@ -57,11 +57,11 @@ Sign in the AWS Management Console and follow a few steps below to create IAM po
 
 .. figure:: _figures/aws_cli_config_3.png
 
-`1.7` Enter the **User name** for the new user. Note that this is the sign-in name for AWS. After that select the type of access the user will have. For this flow, let's select **Programmatic access**. This creates an access key ID and secret access key for the AWS API, CLI, SDK for each user. You can view or download the access keys when you get to the Final page. Move on to set up permissions by clicking **Next: Permissions**.
+`1.7` Enter the user name **cli-user** for the new user. Note that this is the sign-in name for AWS Cli. After that select the type of access the user will have. For this flow, let's select **Programmatic access**. This creates an **Access key ID** and **Secret access key**. You can view or download the access keys when you get to the Final page. Move on to set up permissions by clicking **Next: Permissions**.
 
 .. figure:: _figures/aws_cli_config_4.png
 
-`1.8` There are three permission options available, but for this flow let's select **Attach existing policies directly**. This will show a list of the AWS managed and customer managed policies in your account. Tick **DemoEKSClusterPolicy** to apply to the new user. Click **Next: Tags** to move on.
+`1.8` There are three permission options available, but for this flow let's select **Attach existing policies directly**. This will show a list of the AWS managed and customer managed policies in your account. Paste **DemoEKSClusterPolicy** to the Search Box and tick it to apply to the new user. Click **Next: Tags** to move on.
 
 .. figure:: _figures/aws_cli_config_5.png
 
@@ -73,13 +73,13 @@ Sign in the AWS Management Console and follow a few steps below to create IAM po
 
 .. figure:: _figures/aws_cli_config_7.png
 
-`1.11` To view the users' access keys (access key ID and secret access key), choose **Show** next to each password and access key. Copy or save the access key. Click **Close** to proceed. 
+`1.11` To view the users' access keys (**Access key ID** and **Secret access key**), choose **Show** next to each password and access key. Copy or save the access key. Click **Close** to proceed. 
 
 .. figure:: _figures/aws_cli_config_8.png
 
 Note that you will not have access to the secret key again after this step.
 
-`1.12` Now move on to CLI and run the command **aws configure**, which will set up the AWS CLI installation, and we will be able to use the AWS account we've created. The AWS CLI stores this information in a profile (a collection of settings) named 'default' in the credentials file. 
+`1.12` Now move on to CLI and run the **aws configure** command, which will set up the AWS CLI installation, and we will be able to use the AWS API under account we've created.
 
 .. figure:: _figures/aws_cli_config_9.png
 
@@ -99,11 +99,11 @@ Note that you will not have access to the secret key again after this step.
 
 .. figure:: _figures/eks_setup_4.png
 
-`1.17` One step left - deploying the BuyTime Online resources to AWS EKS K8s cluster. Go to the **k8s-deployments** directory and run the following command: **kubectl apply -f eks-deployment.yaml**.
+`1.17` One step left - deploying the BuyTime Online resources to AWS EKS cluster. Go to the **k8s-deployments** directory and run the following command: **kubectl apply -f eks-deployment.yaml**.
 
 .. figure:: _figures/eks_setup_5.png
 
-`1.18` Let's now see the what the BuyTime Online deployment looks like on the EKS cluster. For that we need to get a LoadBalancer endpoint name. Run the **kubectl get services** command and copy buytime-external FQDN.
+`1.18` Let's now see how the BuyTime Online deployment looks like on the EKS cluster. For that we need to get a LoadBalancer endpoint name. Run the **kubectl get services** command and copy buytime-external FQDN.
 
 .. figure:: _figures/eks_setup_6.png
 
@@ -140,7 +140,7 @@ First, we'll need to generate a site token, which is used among a few other thin
 2. Update manifest
 *******************
 
-Open the kubernetes deployment file located at **./k8s-deployments/volterra-k8s-manifest.yaml**. Paste the token generated in the previous step and save the file. The edited manifest will later be applied to spawn a Volterra Mesh on the EKS cluster. The original manifest template file can be found here:  `Manifest Template <https://gitlab.com/volterra.io/volterra-ce/-/blob/master/k8s/ce_k8s.yml>`_ 
+Open the kubernetes deployment file located at **./k8s-deployments/volterra-k8s-manifest.yaml**. Replace the token generated in the previous step with **<token>** at **line 102** like on the screen below and save the file. The edited manifest will later be applied to spawn a Volterra Mesh on the EKS cluster. The original manifest template file can be found here:  `Manifest Template <https://gitlab.com/volterra.io/volterra-ce/-/blob/master/k8s/ce_k8s.yml>`_ 
 
 .. figure:: _figures/connect_eks_cluster_5.png
 
@@ -250,7 +250,9 @@ We'll create internal TCP and public HTTP load balancers, connecting Volterra wi
 2.1. Deploy resources
 **********************
 
-Using Kubeconfig, we will now deploy our app to Volterra Edge moving there its front-end and Find-a-Store service. Open CLI and run the following command: **kubectl --kubeconfig ./ves_default_vk8s.yaml apply -f vk8s-deployment.yaml**. The output will show the services created. 
+Using Kubeconfig, we will now deploy our app to Volterra Edge moving there its front-end and Find-a-Store service. Open CLI and run the following command: 
+**kubectl --kubeconfig ./ves_default_vk8s.yaml apply -f vk8s-deployment.yaml**
+The output will show the services created. 
 
 .. figure:: _figures/create_vk8s_11.png
 
