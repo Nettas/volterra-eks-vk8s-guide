@@ -41,7 +41,7 @@ Sign in the AWS Management Console and follow a few steps below to create IAM po
 
 .. figure:: _figures/aws_cli_config_1_2.png
 
-`1.3` Choose the **JSON** tab. Copy the JSON policy document `here </blob/master/iam-policy.json>`_  and paste it into the open window. Then click **Next: Tags**.
+`1.3` Choose the **JSON** tab. Copy the JSON policy document `here </iam-policy.json>`_  and paste it into the open window. Then click **Next: Tags**.
 
 .. figure:: _figures/aws_cli_config_1_3.png
 
