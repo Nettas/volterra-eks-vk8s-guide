@@ -49,7 +49,7 @@ Sign in the AWS Management Console and follow a few steps below to create IAM po
 
 .. figure:: _figures/aws_cli_config_1_4.png
 
-`1.5` On the **Review policy** page, type a **Name** (let's use **VolterraLabsPolicy** for this guide). Description field is optional, so let's skip it. In the **Summary** section, you can see the permissions that are granted by your policy. Click **Create policy** when you are ready to save the policy.
+`1.5` On the **Review policy** page, type a **Name** (let's use **VolterraGuidePolicy** for this guide). Description field is optional, so let's skip it. In the **Summary** section, you can see the permissions that are granted by your policy. Click **Create policy** when you are ready to save the policy.
 
 .. figure:: _figures/aws_cli_config_1_5.png
 
@@ -65,7 +65,7 @@ Sign in the AWS Management Console and follow a few steps below to create IAM po
 
 .. figure:: _figures/aws_cli_config_4.png
 
-`1.9` There are three permission options available, but for this flow let's select **Attach existing policies directly**. This will show a list of the AWS managed and customer managed policies in your account. Tick **VolterraLabsPolicy** to apply to the new user. Click **Next: Tags** to move on.
+`1.9` There are three permission options available, but for this flow let's select **Attach existing policies directly**. This will show a list of the AWS managed and customer managed policies in your account. Tick **VolterraGuidePolicy** to apply to the new user. Click **Next: Tags** to move on.
 
 .. figure:: _figures/aws_cli_config_5.png
 
@@ -73,7 +73,7 @@ Sign in the AWS Management Console and follow a few steps below to create IAM po
 
 .. figure:: _figures/aws_cli_config_6.png
 
-`1.11)` This page shows all of the choices you made up to this point. When you are ready to proceed, choose **Create user**.
+`1.11` This page shows all of the choices you made up to this point. When you are ready to proceed, choose **Create user**.
 
 .. figure:: _figures/aws_cli_config_7.png
 
@@ -255,7 +255,7 @@ We'll create internal TCP and public HTTP load balancers, connecting Volterra wi
 2.1. Deploy resources
 **********************
 
-Using Kubeconfig, we will now deploy our app to Volterra Edge moving there its frontend and nearest-store-backend. Open CLI and run the following command: **kubectl --kubeconfig ./ves_default_vk8s.yaml apply -f vk8s-deployment.yaml**. The output will show the services created. 
+Using Kubeconfig, we will now deploy our app to Volterra Edge moving there its front-end and Find-a-Store service. Open CLI and run the following command: **kubectl --kubeconfig ./ves_default_vk8s.yaml apply -f vk8s-deployment.yaml**. The output will show the services created. 
 
 .. figure:: _figures/create_vk8s_11.png
 
@@ -315,17 +315,17 @@ Great! The internal TCP load balancer is now configured and created, and Volterr
 2.3. Create public load balancer
 ******************************
 
-We will use Volterra HTTP Load Balancer as a Reverse Proxy to route traffic to resources located on Volterra vk8s and EKS based on the URI prefix. Let's follow the steps below to create load balancer for our app, an origin pool for frontend, and add routes for the load balancer - backend and nearest-store-backend.
+We will use Volterra HTTP Load Balancer as a Reverse Proxy to route traffic to resources located on Volterra vk8s and EKS based on the URI prefix. Let's follow the steps below to create load balancer for our app, an origin pool for frontend, and add routes for the load balancer - backend and Find-a-Store service.
 
 `a)` In the **Application** tab, navigate to **Load Balancers** and then select **HTTP Load Balancers** in the options. Then click **Add HTTP Load Balancer** to open the load balancer creation form.
 
 .. figure:: _figures/httplb_1.png
 
-`b)`` First, enter the load balancer name. Then provide a domain name for our workload: a domain can be delegated to Volterra, so that Domain Name Service (DNS) entries can be created quickly in order to deploy and route traffic to our workload within seconds. Let’s use **buytime.demo.f5lab** for this flow. Finally, move on to creating an origin pool that will be used for this load balancer by clicking **Configure**.
+`b)` First, enter the load balancer name. Then provide a domain name for our workload: a domain can be delegated to Volterra, so that Domain Name Service (DNS) entries can be created quickly in order to deploy and route traffic to our workload within seconds. Let’s use **buytime.demo.f5guide** for this flow. Finally, move on to creating an origin pool that will be used for this load balancer by clicking **Configure**.
 
 .. figure:: _figures/httplb_2.png
 
-`c)`` The origin pools are a mechanism to configure a set of endpoints grouped together into a resource pool that is used in the load balancer configuration. 
+`c)` The origin pools are a mechanism to configure a set of endpoints grouped together into a resource pool that is used in the load balancer configuration. 
 
 Let's create a new Origin Pool, which will be used in our load balancer by clicking **Add item**.
 
@@ -341,7 +341,7 @@ After that select site **Virtual Site** as site where the origin server will be 
 
 .. figure:: _figures/httplb_4.png
 
-`f)`` Click **Apply** to apply the configuration of origin pool to the load balancer. This will return to the load balancer configuration form.
+`f)` Click **Apply** to apply the configuration of origin pool to the load balancer. This will return to the load balancer configuration form.
 
 .. figure:: _figures/httplb_5.png
 
@@ -393,7 +393,7 @@ Select **Outside Network** on the site and enter the port **80** where endpoint 
 
 .. figure:: _figures/httplb_16.png
 
-`r)` Enter a unique name for the origin pool, and then select **K8s Service Name of Origin Server on given Sites** as the type of origin server. Note that we will need to indicate the Origin Server **service name**, which follows the format of **servicename.namespace**. For this flow, let's specify **buytime-nearest-store-backend.default**. 
+`r)` Enter a unique name for the origin pool, and then select **K8s Service Name of Origin Server on given Sites** as the type of origin server. Note that we will need to indicate the Origin Server **service name**, which follows the format of **servicename.namespace**. For this flow, let's specify **buytime-find-a-store-service.default**. 
 
 After that select site **Virtual Site** as site where the origin server will be located. Specify reference to the virtual site object - **shared/ves-io-all-res** which includes all Regional Edge Sites across Volterra. After that, select **vK8s Networks on Site** as network, which means that origin server is on vK8s network on the site. And then enter the port **80** where endpoint service will be available. Click **Continue** to move on. 
 
@@ -411,7 +411,7 @@ After that select site **Virtual Site** as site where the origin server will be 
 
 .. figure:: _figures/httplb_20.png
 
-`v)` Let's now copy the generated CNAME for our HTTP load balancer to see if the app, whose frontend and nearest-store-backend are located in Volterra Edge, works.
+`v)` Let's now copy the generated CNAME for our HTTP load balancer to see if the app, whose frontend and Find-a-Store service are located in Volterra Edge, works.
 
 .. figure:: _figures/httplb_21.png
 
