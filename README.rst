@@ -53,65 +53,61 @@ Sign in the AWS Management Console and follow a few steps below to create IAM po
 
 .. figure:: _figures/aws_cli_config_1_5.png
 
-`1.6` Let's now create an IAM user. In the navigation pane, choose **Users**.
-
-.. figure:: _figures/aws_cli_config_2.png
-
-`1.7` Then select **Add users**. This will open the page with user details. 
+`1.6` Let's now create an IAM user. In the navigation pane, choose **Users**. Then select **Add users**. This will open the page with user details. 
 
 .. figure:: _figures/aws_cli_config_3.png
 
-`1.8` Enter the **User name** for the new user. Note that this is the sign-in name for AWS. After that select the type of access the user will have. For this flow, let's select **Programmatic access**. This creates an access key ID and secret access key for the AWS API, CLI, SDK for each user. You can view or download the access keys when you get to the Final page. Move on to set up permissions by clicking **Next: Permissions**.
+`1.7` Enter the **User name** for the new user. Note that this is the sign-in name for AWS. After that select the type of access the user will have. For this flow, let's select **Programmatic access**. This creates an access key ID and secret access key for the AWS API, CLI, SDK for each user. You can view or download the access keys when you get to the Final page. Move on to set up permissions by clicking **Next: Permissions**.
 
 .. figure:: _figures/aws_cli_config_4.png
 
-`1.9` There are three permission options available, but for this flow let's select **Attach existing policies directly**. This will show a list of the AWS managed and customer managed policies in your account. Tick **DemoEKSClusterPolicy** to apply to the new user. Click **Next: Tags** to move on.
+`1.8` There are three permission options available, but for this flow let's select **Attach existing policies directly**. This will show a list of the AWS managed and customer managed policies in your account. Tick **DemoEKSClusterPolicy** to apply to the new user. Click **Next: Tags** to move on.
 
 .. figure:: _figures/aws_cli_config_5.png
 
-`1.10` Tag setting is optional, so let's move on by clicking **Next: Review**. 
+`1.9` Tag setting is optional, so let's move on by clicking **Next: Review**. 
 
 .. figure:: _figures/aws_cli_config_6.png
 
-`1.11` This page shows all of the choices you made up to this point. When you are ready to proceed, choose **Create user**.
+`1.10` This page shows all of the choices you made up to this point. When you are ready to proceed, choose **Create user**.
 
 .. figure:: _figures/aws_cli_config_7.png
 
-`1.12` To view the users' access keys (access key ID and secret access key), choose **Show** next to each password and access key. Copy or save the access key. Click **Close** to proceed. 
+`1.11` To view the users' access keys (access key ID and secret access key), choose **Show** next to each password and access key. Copy or save the access key. Click **Close** to proceed. 
 
 .. figure:: _figures/aws_cli_config_8.png
 
 Note that you will not have access to the secret key again after this step.
 
-`1.13` Now move on to CLI and run the command **aws configure**, which will set up the AWS CLI installation, and we will be able to use the AWS account we've created. The AWS CLI stores this information in a profile (a collection of settings) named 'default' in the credentials file. 
+`1.12` Now move on to CLI and run the command **aws configure**, which will set up the AWS CLI installation, and we will be able to use the AWS account we've created. The AWS CLI stores this information in a profile (a collection of settings) named 'default' in the credentials file. 
 
 .. figure:: _figures/aws_cli_config_9.png
 
-`1.14` After successful setting up AWS CLI installation, we will need to run the **terraform init** command, which will initialize a working directory containing Terraform configuration files. 
+`1.13` After successful setting up AWS CLI installation, we will need to run the **terraform init** command, which will initialize a working directory containing Terraform configuration files. 
 
 .. figure:: _figures/eks_setup_1.png
 
-`1.15` After we prepared the current working directory for use with Terraform, let's run the **terraform plan** command. This will create an execution plan. 
+`1.14` After we prepared the current working directory for use with Terraform, let's run the **terraform plan** command. This will create an execution plan. 
 
 .. figure:: _figures/eks_setup_2.png
 
-`1.16` Run the **terraform apply** command that executes the actions proposed in the terraform plan created a step above.
+`1.15` Run the **terraform apply** command that executes the actions proposed in the terraform plan created a step above.
 
 .. figure:: _figures/eks_setup_3.png
 
-`1.17` After the terraform plan has been executed, let's configure kubectl so that we could connect to an Amazon EKS cluster. Run the following command: **aws eks update-kubeconfig --region eu-west-2 --name eks-cluster**.
+`1.16` After the terraform plan has been executed, let's configure kubectl so that we could connect to an Amazon EKS cluster. Run the following command: **aws eks update-kubeconfig --region eu-west-2 --name eks-cluster**.
 
 .. figure:: _figures/eks_setup_4.png
 
-`1.18` One step left - deploying the BuyTime Online resources to AWS EKS K8s cluster. Go to the **k8s-deployments** directory and run the following command: **kubectl apply -f eks-deployment.yaml**.
+`1.17` One step left - deploying the BuyTime Online resources to AWS EKS K8s cluster. Go to the **k8s-deployments** directory and run the following command: **kubectl apply -f eks-deployment.yaml**.
 
 .. figure:: _figures/eks_setup_5.png
 
-`1.19` Let's now see the what the BuyTime Online deployment looks like on the EKS cluster. For that we need to get a LoadBalancer endpoint name. Run the **kubectl get services** command and copy buytime-external FQDN.
+`1.18` Let's now see the what the BuyTime Online deployment looks like on the EKS cluster. For that we need to get a LoadBalancer endpoint name. Run the **kubectl get services** command and copy buytime-external FQDN.
 
 .. figure:: _figures/eks_setup_6.png
 
-`1.20` Open FQDN in the browser. It may take some time to create resources.
+`1.19` Open FQDN in the browser. It may take some time to create resources.
 
 .. figure:: _figures/eks_setup_7.png
 
