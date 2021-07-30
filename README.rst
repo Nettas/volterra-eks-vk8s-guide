@@ -91,7 +91,7 @@ Note that you will not have access to the secret key again after this step.
 
 .. figure:: _figures/eks_setup_1.png
 
-`1.15` After we prepared the current working directory for use with Terraform by performing several different initialization steps, let's run the **terraform plan** command. This will create an execution plan. 
+`1.15` After we prepared the current working directory for use with Terraform, let's run the **terraform plan** command. This will create an execution plan. 
 
 .. figure:: _figures/eks_setup_2.png
 
@@ -178,7 +178,7 @@ We have now configured our Site, so let's see its status, including health score
 B. Deploy a distributed workload to the Volterra GLobal Network Regional Edge (RE)
 #####################################################################################
 
-Volterra provides mechanism to easily deploy distributed app services to Regional Edge (RE) locations by using the Volterra Global Network. First, in Step (1) we will create a virtual K8s (vK8s) spanning multiple geographic locations, and then in the Step (2) deploy a Find-a-Store app service and an updated BuyTime Online front-end closer to the RE locations, which will improve app performance by delivering the applications closer to geographicaly-dispersed end users. 
+Volterra provides mechanism to easily deploy distributed app services to Regional Edge (RE) locations by using the Volterra Global Network. First, in Step (1) we will create a virtual K8s (vK8s) spanning multiple geographic locations, and then in the Step (2) deploy a Find-a-Store app service and an updated BuyTime Online front-end closer to the RE locations, which will improve app performance by delivering the applications closer to geographically-dispersed end users. 
 
 1. Create a vK8S Cluster
 ##################### 
@@ -241,7 +241,7 @@ Open CLI, and run the following command **kubectl --kubeconfig ./ves_default_vk8
 2. Deploy resources to Volterra Edge
 ##################################### 
 
-After vK8s cluster has been created and tested, we can target our Find-a-Store service and an updated version of the BuyTime front-end to the geographically distributed Regional Edge (RE) locations. The Find-a-Store service will use VoltMesh to securely connect back to the deployment on AWS VPC in order retrieve store location and US ZIP code & geolocation data. 
+After vK8s cluster has been created and tested, we can target our Find-a-Store service and an updated version of the BuyTime front-end to the geographically distributed Regional Edge (RE) locations. The Find-a-Store service will use VoltMesh to securely connect back to the deployment on AWS VPC in order to retrieve store location and US ZIP code & geolocation data. 
 
 We'll create internal TCP and public HTTP load balancers, connecting Volterra with EKS cluster (with app's backend), and Volterra with the internet, respectively. Then we will test if the resources are successfully deployed to Volterra Edge and available. 
 
@@ -261,7 +261,7 @@ Let's now create an internal TCP load balancer to connect Volterra with k8s clus
 
 .. figure:: _figures/tcplb_mysql_1.png
 
-`b)` Enter a name for the TCP load balancer in the Metadata section, and domain that will be matched to this balancer. A domain can be delegated to Volterra, so that Domain Name Service (DNS) entries can be created quickly in order to deploy and route traffic to our workload within seconds. 
+`b)` Enter a name for the TCP load balancer in the Metadata section, and domain that will be matched to this balancer. A domain can be delegated to Volterra, so that Domain Name Service (DNS) entries can be created quickly in order to deploy and route traffic to our workload within seconds. For this flow, let's use **buytime-database.internal** domain. 
 
 Then fill in listen port **3306** for the TCP proxy, and move on to creating origin pool that will be used for this load balancer by clicking **Configure** origin pools.
 
