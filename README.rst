@@ -97,11 +97,15 @@ Note that you will not have access to the secret key again after this step.
 
 .. figure:: _figures/eks_setup_3.png
 
-`1.16` After the terraform plan has been executed, let's configure kubectl so that we could connect to an Amazon EKS cluster. Run the following command: **aws eks update-kubeconfig --region us-west-1 --name eks-cluster**.
+`1.16` After the terraform plan has been executed, let's configure kubectl so that we could connect to an Amazon EKS cluster. Run the following command: 
+
+**aws eks update-kubeconfig --region us-west-1 --name eks-cluster**
 
 .. figure:: _figures/eks_setup_4.png
 
-`1.17` One step left - deploying the BuyTime Online resources to AWS EKS cluster. Go to the **k8s-deployments** directory and run the following command: **kubectl apply -f eks-deployment.yaml**.
+`1.17` One step left - deploying the BuyTime Online resources to AWS EKS cluster. Go to the **k8s-deployments** directory and run the following command: 
+
+**kubectl apply -f eks-deployment.yaml**
 
 .. figure:: _figures/eks_setup_5.png
 
