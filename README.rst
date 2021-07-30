@@ -17,9 +17,9 @@ Let's get started!
 Pre-Requisites
 ###############
 
-- AWS Account http://link
-- AWS Cli http://link
-- Terraform http://link
+- AWS Account https://aws.amazon.com/
+- AWS Cli https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html
+- Terraform https://learn.hashicorp.com/tutorials/terraform/install-cli
 - Kubectl https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html
 - Volterra account  https://volterra.io
 
@@ -41,7 +41,7 @@ Sign in the AWS Management Console and follow a few steps below to create IAM po
 
 .. figure:: _figures/aws_cli_config_1_2.png
 
-`1.3` Choose the **JSON** tab. Copy the JSON policy document `here <https://github.com/yoctoalex/volterra-eks-vk8s-lab/blob/f7d56268056056c2b0b8f345a2318e08de52b528/iam-policy.json>`_  and paste it into the open window. Then click **Next: Tags**.
+`1.3` Choose the **JSON** tab. Copy the JSON policy document `here </blob/master/iam-policy.json>`_  and paste it into the open window. Then click **Next: Tags**.
 
 .. figure:: _figures/aws_cli_config_1_3.png
 
