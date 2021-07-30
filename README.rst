@@ -251,7 +251,9 @@ We'll create internal TCP and public HTTP load balancers, connecting Volterra wi
 **********************
 
 Using Kubeconfig, we will now deploy our app to Volterra Edge moving there its front-end and Find-a-Store service. Open CLI and run the following command: 
+
 **kubectl --kubeconfig ./ves_default_vk8s.yaml apply -f vk8s-deployment.yaml**
+
 The output will show the services created. 
 
 .. figure:: _figures/create_vk8s_11.png
