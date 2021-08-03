@@ -43,7 +43,7 @@ In the guide we will use **us-west-1** AWS region. If you would like to use anot
 
 .. figure:: _figures/aws_cli_config_1_2.png
 
-`1.3` Choose the **JSON** tab. Copy the JSON policy document `here </iam-policy.json>`_  and paste it into the open window. Then click **Next: Tags**.
+`1.3` Choose the **JSON** tab. Copy the JSON policy document `here </IAM-policy.json>`_  and paste it into the open window. Then click **Next: Tags**.
 
 .. figure:: _figures/aws_cli_config_1_3.png
 
