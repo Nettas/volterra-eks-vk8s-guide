@@ -33,7 +33,7 @@ The initial environment in AWS contains the "initial" deployment of the BuyTime 
 
 Sign in the AWS Management Console and follow a few steps below to create a new user with IAM policies required for the guide. 
 
-In the guide we will use **us-west-1** AWS region. If you would like to use another, you can change the region setting in the **/terraform/vpc.tf** file and in the step 1.16.
+In the guide we will use **us-west-1** AWS region. If you would like to use another, you can change the region setting in the **/terraform/variables.tf** file and in the step 1.16.
 
 `1.1` Type in **IAM** in the search field to find and proceed to the **IAM - Manage access to AWS resources**.  
 
