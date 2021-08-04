@@ -20,7 +20,7 @@ Pre-Requisites
 - AWS Account https://aws.amazon.com/
 - AWS Cli https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html
 - Terraform https://learn.hashicorp.com/tutorials/terraform/install-cli
-- Kubectl https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html
+- Kubectl https://kubernetes.io/docs/tasks/tools/
 - Volterra account  https://volterra.io
 
 AWS Environment Setup  
