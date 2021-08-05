@@ -146,7 +146,7 @@ First, we'll need to generate a site token, which is used among a few other thin
 2. Update manifest
 *******************
 
-Open the kubernetes deployment file located at **./k8s-deployments/volterra-k8s-manifest.yaml**. Replace the token generated in the previous step with **<token>** at **line 102** like on the screen below and save the file. The edited manifest will later be applied to spawn a Volterra Mesh on the EKS cluster. The original manifest template file can be found here:  `Manifest Template <https://gitlab.com/volterra.io/volterra-ce/-/blob/master/k8s/ce_k8s.yml>`_ 
+Open the kubernetes deployment file located at **./k8s-deployments/volterra-k8s-manifest.yaml**. Replace the token generated in the previous step with **<token>** at **line 102** like on the screen below and save the file. The edited manifest will later be applied to spawn a Volterra Mesh on the EKS cluster. The original manifest template file can be found here:  `Manifest Template <https://gitlab.com/volterra.io/volterra-ce/-/blob/master/k8s/ce_k8s.yml>`_. 
 
 .. figure:: _figures/connect_eks_cluster_5.png
 
@@ -425,7 +425,7 @@ Validating distributed app deployment
 
 Open any browser and paste the copied CNAME. You will see BuyTime front-end with the Find-a-Store service, which serves geographically-dispersed user base. The  Regional Edge deployment of the BuyTime closest to the user will respond to requests and perform nearest store calculations at the customer edge. Volterra VoltMesh creates the networking to securely connect the Find-a-Store services to the one central managed K8s deployment in AWS to periodically pull data from DataBase.
 
-Let's give it a shot, by trying some US zip codes: 19001 and 98007
+Let's give it a shot, by trying some US zip codes: 19001 and 98007.
 
 .. figure:: _figures/httplb_22.png
 
