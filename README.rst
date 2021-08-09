@@ -1,4 +1,3 @@
-volterra-eks-vk8s-lab
 ==================================================
 
 .. contents:: Table of Contents
