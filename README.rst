@@ -12,7 +12,7 @@ In the AWS Environment Setup section we will use the included Terraform scripts 
 
 Let's get started!
 
-.. figure:: _figures/overview.png
+.. figure:: _figures/overview.gif
 
 Pre-Requisites
 ###############
