@@ -182,7 +182,7 @@ We have now configured our Site, so let's see its status, including health score
 
 **Note**: It may take a few minutes for the health and connectivity status to get updated in the portal.
 
-B. Deploy a distributed workload to the Volterra GLobal Network Regional Edge (RE)
+B. Deploy a distributed workload to the Volterra Global Network Regional Edge (RE)
 #####################################################################################
 
 Volterra provides mechanism to easily deploy distributed app services to Regional Edge (RE) locations by using the Volterra Global Network. First, in Step (1) we will create a virtual K8s (vK8s) spanning multiple geographic locations, and then in the Step (2) deploy a Find-a-Store app service and an updated BuyTime Online front-end closer to the RE locations, which will improve app performance by delivering the applications closer to geographically-dispersed end users. 
@@ -310,7 +310,7 @@ Select **Outside Network** on the site and enter the port **3306** where endpoin
 
 .. figure:: _figures/tcplb_mysql_8.png
 
-`i)` Finish creating the load balancer clicking **Save and Exit**.
+`i)` Finish creating the load balancer by clicking **Save and Exit**.
 
 .. figure:: _figures/tcplb_mysql_9.png
 
@@ -411,7 +411,7 @@ After that select site **Virtual Site** as site where the origin server will be 
 
 .. figure:: _figures/httplb_19.png
 
-`u)` Finish creating the load balancer clicking **Save and Exit**.
+`u)` Finish creating the load balancer by clicking **Save and Exit**.
 
 .. figure:: _figures/httplb_20.png
 
