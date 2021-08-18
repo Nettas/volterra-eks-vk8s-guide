@@ -98,7 +98,7 @@ Note that you will not have access to the secret key again after this step.
 
 `1.16` After the terraform plan has been executed, let's configure kubectl so that we could connect to an Amazon EKS cluster. Run the following command: 
 
-**aws eks update-kubeconfig --region us-west-1 --name eks-cluster**
+**aws eks update-kubeconfig --region $(terraform output -raw region) --name $(terraform output -raw cluster_name)**
 
 .. figure:: _figures/eks_setup_4.png
 
